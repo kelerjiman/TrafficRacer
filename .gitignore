@@ -1,2 +1,5 @@
 # Google App Engine generated folder
 appengine-generated/
+*.meta
+*.meta
+.vs/Traffic Racer Test/v15/.suo
