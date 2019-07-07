@@ -12,7 +12,7 @@ public class UnderLightColliders : MonoBehaviour
         {
             DirClosed = true;
             if (name == "Front")
-                GetComponentInParent<LightManager>().FrontCar = other.gameObject;
+                GetComponentInParent<LightManager>().FrontObject = other.gameObject;
             if (name == "Right")
                 GetComponentInParent<LightManager>().RightCar = other.gameObject;
             if (name == "Left")

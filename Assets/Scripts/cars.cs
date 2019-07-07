@@ -28,6 +28,7 @@ public class cars : MonoBehaviour
     }
     void Start()
     {
+        gameObject.layer = LayerMask.NameToLayer("Cars");
         if (gameObject.GetComponents<BoxCollider>().Length == 0)
             gameObject.AddComponent<BoxCollider>().enabled = true;
         if (gameObject.GetComponents<MeshCollider>().Length > 0)
@@ -63,9 +64,14 @@ public class cars : MonoBehaviour
         //badan rooye An kar shavad
         if (TimeToTurn)
         {
-            front = lights.FrontCar;
+            front = lights.FrontObject;
             if (front.gameObject != null && front.gameObject.activeInHierarchy)
-                Zspeed = front.GetComponent<cars>().Zspeed+0.1f;
+            {
+                if (front.layer==LayerMask.NameToLayer("Cars"))
+                    Zspeed = front.GetComponent<cars>().Zspeed;
+                else
+                    rig.velocity = Vector3.forward * Zspeed;
+            }
             if (Inverse)
             {
                 if (!lights.left.DirClosed || !lights.right.DirClosed)
@@ -82,20 +88,19 @@ public class cars : MonoBehaviour
 
                     }
                     transform.rotation = new Quaternion(temp.x, temp.y, temp.z, temp.w);
-                    LetsMove();
                 }
             }
             else
             {
                 if (lights.back.DirClosed)
                 {
-                    Zspeed = lights.BackCar.GetComponent<cars>().Zspeed+0.1f;
+                    Zspeed = lights.BackCar.GetComponent<cars>().Zspeed + 0.1f;
                 }
                 else
                 {
                     Zspeed = DefaultSpeed;
                 }
-               if(!lights.left.DirClosed|| !lights.right.DirClosed)
+                if (!lights.left.DirClosed || !lights.right.DirClosed)
                 {
                     var temp = transform.rotation;
                     if (!lights.left.DirClosed)
