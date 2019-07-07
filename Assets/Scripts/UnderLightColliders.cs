@@ -8,7 +8,7 @@ public class UnderLightColliders : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         print(other.tag);
-        if (other.tag != "ground")
+        if (other.gameObject.layer!=LayerMask.NameToLayer("Ground"))
         {
             DirClosed = true;
             if (name == "Front")
@@ -23,9 +23,14 @@ public class UnderLightColliders : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        StartCoroutine(Delay());
         if (other.tag != "ground")
         {
             DirClosed = false;
         }
+    }
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

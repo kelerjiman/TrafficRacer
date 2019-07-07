@@ -19,7 +19,7 @@ public class cars : MonoBehaviour
     [SerializeField]
     GameObject front, back;
     [SerializeField]
-    float angle = 3f;
+    float angle = 45f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -68,9 +68,7 @@ public class cars : MonoBehaviour
             if (front.gameObject != null && front.gameObject.activeInHierarchy)
             {
                 if (front.layer==LayerMask.NameToLayer("Cars"))
-                    Zspeed = front.GetComponent<cars>().Zspeed;
-                else
-                    rig.velocity = Vector3.forward * Zspeed;
+                    Zspeed = front.GetComponent<cars>().Zspeed+(Mathf.Sign(Zspeed)*0.1f);
             }
             if (Inverse)
             {
@@ -87,37 +85,12 @@ public class cars : MonoBehaviour
                         temp = Quaternion.Euler(0, transform.rotation.eulerAngles.y + angle * Time.deltaTime, 0);
 
                     }
-                    transform.rotation = new Quaternion(temp.x, temp.y, temp.z, temp.w);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, temp, H_R_Speed);
                 }
             }
             else
             {
-                if (lights.back.DirClosed)
-                {
-                    Zspeed = lights.BackCar.GetComponent<cars>().Zspeed + 0.1f;
-                }
-                else
-                {
-                    Zspeed = DefaultSpeed;
-                }
-                if (!lights.left.DirClosed || !lights.right.DirClosed)
-                {
-                    var temp = transform.rotation;
-                    if (!lights.left.DirClosed)
-                    {
-                        temp = Quaternion.Euler(0, transform.rotation.eulerAngles.y - angle * Time.deltaTime, 0);
-                        transform.Translate(Vector3.left * Zspeed * Time.deltaTime);
-                    }
-                    else
-                    if (!lights.right.DirClosed)
-                    {
-                        temp = Quaternion.Euler(0, transform.rotation.eulerAngles.y + angle * Time.deltaTime, 0);
-                        transform.Translate(Vector3.right * Zspeed * Time.deltaTime);
 
-                    }
-                    transform.rotation = new Quaternion(temp.x, temp.y, temp.z, temp.w);
-                    LetsMove();
-                }
             }
         }
         else
@@ -129,7 +102,7 @@ public class cars : MonoBehaviour
     void LetsMove()
     {
         transform.Translate(0, 0, Zspeed * Time.deltaTime);
-        if (Inverse)
+        //if (Inverse)
             transform.rotation = Quaternion.Lerp(transform.rotation, defRot, H_R_Speed * Time.deltaTime);
     }
 }
