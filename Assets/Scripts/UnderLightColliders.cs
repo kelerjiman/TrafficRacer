@@ -14,11 +14,11 @@ public class UnderLightColliders : MonoBehaviour
             if (name == "Front")
                 GetComponentInParent<LightManager>().FrontObject = other.gameObject;
             if (name == "Right")
-                GetComponentInParent<LightManager>().RightCar = other.gameObject;
+                GetComponentInParent<LightManager>().RightObject = other.gameObject;
             if (name == "Left")
-                GetComponentInParent<LightManager>().LeftCar = other.gameObject;
+                GetComponentInParent<LightManager>().LeftObject = other.gameObject;
             if (name == "Back")
-                GetComponentInParent<LightManager>().BackCar = other.gameObject;
+                GetComponentInParent<LightManager>().BackObject = other.gameObject;
         }
     }
     private void OnTriggerExit(Collider other)

@@ -11,7 +11,7 @@ public class LightManager : MonoBehaviour
     [SerializeField] Light[] BackLight;
     [SerializeField] Light[] Flasher;
     public UnderLightColliders right, left, front, back;
-    public GameObject FrontObject, RightCar, LeftCar, BackCar;
+    public GameObject FrontObject, RightObject, LeftObject, BackObject;
     bool Is_DayTime = true;
     bool Is_Breaking = false;
     bool Is_Player = false;
