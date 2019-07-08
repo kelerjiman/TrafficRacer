@@ -5,7 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float Speed = 30f;
+    public float GlobalSpeed = 30f;
+    public bool doJob = false;
     [SerializeField] List<GameObject> PrefabList;
     [SerializeField] int counter;
     [Header("respawn time (x=min , y= max")]
@@ -21,24 +22,28 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GlobalSpeed = GameManager.GlobalSpeed;
     }
     IEnumerator RewpawnDelay()
     {
         yield return new WaitForSeconds(Random.Range(RespawnTimer.x, RespawnTimer.y));
-        counter = Random.Range(0, PrefabList.Count);
-           var x = Instantiate(PrefabList[counter], transform.position,Quaternion.identity);
-        x.transform.parent = transform;
-        x.tag = "Obs";
-        if (reverseLine)
+        if (doJob)
         {
-            
-            x.transform.rotation = Quaternion.Inverse(transform.rotation);
-            x.GetComponent<cars>().Inverse = true;
-            x.GetComponent<cars>().Zspeed = Speed * 2 +Random.Range(0,10);
-        }
-        else
-        {
-            x.GetComponent<cars>().Zspeed = -Speed-Random.Range(1,30);
+            counter = Random.Range(0, PrefabList.Count);
+            var x = Instantiate(PrefabList[counter], transform.position, Quaternion.identity);
+            x.transform.parent = transform;
+            x.layer = LayerMask.NameToLayer("Cars");
+            if (reverseLine)
+            {
+                x.transform.rotation = Quaternion.Inverse(transform.rotation);
+                x.GetComponent<cars>().Inverse = true;
+                x.GetComponent<cars>().GlobalSpeed = GlobalSpeed * 2;
+            }
+            else
+            {
+                x.GetComponent<cars>().GlobalSpeed = -GlobalSpeed;
+            }
+            x.transform.parent = transform.parent;
         }
         StartCoroutine(RewpawnDelay());
     }
