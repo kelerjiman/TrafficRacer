@@ -9,7 +9,6 @@ public class border : MonoBehaviour
         if(collision.gameObject.tag=="Player")
         {
             Time.timeScale = 0;
-            print("game over");
         }
         else
         {

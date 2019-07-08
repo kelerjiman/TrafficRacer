@@ -48,7 +48,6 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obs")
         {
-            print(collision.gameObject.name);
             IsAccident = true;
 
         }

@@ -7,7 +7,6 @@ public class UnderLightColliders : MonoBehaviour
     public bool DirClosed = false, FrontClosed = false;
     private void OnTriggerEnter(Collider other)
     {
-        print(other.tag);
         if (other.gameObject.layer!=LayerMask.NameToLayer("Ground"))
         {
             DirClosed = true;
