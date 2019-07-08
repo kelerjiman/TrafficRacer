@@ -13,7 +13,6 @@ public class border : MonoBehaviour
         }
         else
         {
-            if(collision.gameObject.tag!="ground")
                 Destroy(collision.gameObject);
         }
     }
