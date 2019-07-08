@@ -8,7 +8,7 @@ public class cars : MonoBehaviour
     public float Zspeed = -2f, DefaultSpeed;
     [SerializeField]
     [Range(0, 1)]
-    float H_R_Speed = 0.5f;
+    float H_R_Speed = 1f;
     Quaternion defRot;
     public bool Inverse = false;
     border GBorder;
@@ -19,12 +19,17 @@ public class cars : MonoBehaviour
     [SerializeField]
     GameObject front, back;
     [SerializeField]
-    float angle = 45f;
+    float angle = 55f;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "ground")
             stop = true;
+    }
+    private void Awake()
+    {
+        H_R_Speed = 1f;
+        angle = 55f;
     }
     void Start()
     {
@@ -67,8 +72,8 @@ public class cars : MonoBehaviour
             front = lights.FrontObject;
             if (front.gameObject != null && front.gameObject.activeInHierarchy)
             {
-                if (front.layer==LayerMask.NameToLayer("Cars"))
-                    Zspeed = front.GetComponent<cars>().Zspeed+(Mathf.Sign(Zspeed)*0.1f);
+                if (front.layer == LayerMask.NameToLayer("Cars"))
+                    Zspeed = front.GetComponent<cars>().Zspeed + (Mathf.Sign(Zspeed) * 0.1f);
             }
             if (Inverse)
             {
@@ -103,6 +108,6 @@ public class cars : MonoBehaviour
     {
         transform.Translate(0, 0, Zspeed * Time.deltaTime);
         //if (Inverse)
-            transform.rotation = Quaternion.Lerp(transform.rotation, defRot, H_R_Speed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, defRot, H_R_Speed * Time.deltaTime);
     }
 }
