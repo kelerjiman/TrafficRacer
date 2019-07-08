@@ -19,21 +19,23 @@ public class cars : MonoBehaviour
     [SerializeField]
     GameObject front, back;
     [SerializeField]
-    float angle = 55f;
+    float angle = 30f;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "ground")
-            stop = true;
+        if (collision.gameObject.tag != "ground" && collision.gameObject.tag != "Player"&& collision.gameObject.layer!=LayerMask.NameToLayer("Cars"))
+            Destroy(gameObject);
     }
     private void Awake()
     {
         H_R_Speed = 1f;
-        angle = 55f;
+        angle = 30f;
+        gameObject.layer = LayerMask.NameToLayer("Cars");
     }
     void Start()
     {
-        gameObject.layer = LayerMask.NameToLayer("Cars");
+
+        tag = "Obs";
         if (gameObject.GetComponents<BoxCollider>().Length == 0)
             gameObject.AddComponent<BoxCollider>().enabled = true;
         if (gameObject.GetComponents<MeshCollider>().Length > 0)
@@ -73,7 +75,7 @@ public class cars : MonoBehaviour
             if (front.gameObject != null && front.gameObject.activeInHierarchy)
             {
                 if (front.layer == LayerMask.NameToLayer("Cars"))
-                    Zspeed = front.GetComponent<cars>().Zspeed + (Mathf.Sign(Zspeed) * 0.1f);
+                    Zspeed = front.GetComponent<cars>().Zspeed;
             }
             if (Inverse)
             {

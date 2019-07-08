@@ -30,18 +30,17 @@ public class Spawner : MonoBehaviour
         if (doJob)
         {
             counter = Random.Range(0, PrefabList.Count);
-            var x = Instantiate(PrefabList[counter], transform.position, Quaternion.identity);
-            x.transform.parent = transform;
+            var x = Instantiate(PrefabList[counter], transform.position, Quaternion.identity,transform);
             x.layer = LayerMask.NameToLayer("Cars");
             if (reverseLine)
             {
                 x.transform.rotation = Quaternion.Inverse(transform.rotation);
                 x.GetComponent<cars>().Inverse = true;
-                x.GetComponent<cars>().GlobalSpeed = GlobalSpeed * 2;
+                x.GetComponent<cars>().Zspeed = GlobalSpeed * 2*Random.Range(0.5f,1);
             }
             else
             {
-                x.GetComponent<cars>().GlobalSpeed = -GlobalSpeed;
+                x.GetComponent<cars>().Zspeed = -GlobalSpeed;
             }
             x.transform.parent = transform.parent;
         }
