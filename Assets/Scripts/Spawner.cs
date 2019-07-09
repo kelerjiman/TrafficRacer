@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
             else
             {
                 Destroy(x.GetComponent<cars>());
-                x.GetComponent<NormCars>().Zspeed = -GlobalSpeed;
+                x.GetComponent<NormCars>().Zspeed = -GlobalSpeed * Random.Range(0.5f, 1);
             }
         }
         StartCoroutine(RewpawnDelay());

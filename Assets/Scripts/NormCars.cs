@@ -4,52 +4,103 @@ using UnityEngine;
 
 public class NormCars : MonoBehaviour
 {
-    public float Zspeed = -2f, DefaultSpeed;
+    public float Zspeed = -2f, DefaultSpeed, ChangeLineSpeed;
     [SerializeField]
     [Range(0, 1)]
     float H_R_Speed = 1f;
-    Quaternion defRot;
-    public bool Inverse = false;
+    Quaternion NewRot;
+    [SerializeField] Transform RotationChild;
     border GBorder;
     Rigidbody rig;
-    [SerializeField] bool TimeToTurn = false, NoWay = false;
-    [SerializeField] LightManager lights;
+    [SerializeField] bool TimeToTurn = false, NoWay = false, GoLeft = false, GoRight = false, KnowDir = false;
+    [SerializeField] LightManager Detector;
     [Header("will delete after complete")]
     [SerializeField]
     GameObject front, back;
     [SerializeField]
     float angle = 30f;
+    private void Start()
+    {
+        RotationChild = transform.Find("RotationChild");
+        NewRot = transform.rotation;
+        ChangeLineSpeed = GameManager.ChangeLineSpeed;
+        DefaultSpeed = Zspeed;
+        Detector = transform.Find("Detector").GetComponent<LightManager>();
+    }
 
     private void Update()
     {
-        if (lights.front.DirClosed)
+        if (Detector.front.DirClosed)
             TimeToTurn = true;
         else
             TimeToTurn = false;
 
         LetsMove();
-        //AIMoveBehavior();
+        AIMoveBehavior();
+        AIChooseDirection();
+        ChangeDirection();
     }
     void AIMoveBehavior()
     {
-        if (lights.back.DirClosed)
-            Zspeed = lights.BackObject.GetComponent<NormCars>().Zspeed;
+        if (Detector.back.DirClosed && Detector.BackObject != null)
+        {
+            if (Detector.BackObject.layer == LayerMask.NameToLayer("Cars"))
+                Zspeed = Detector.BackObject.GetComponent<NormCars>().Zspeed;
+        }
         else
             Zspeed = DefaultSpeed;
     }
     void AIChooseDirection()
     {
-        if (!TimeToTurn) return;
-        if (!lights.left.DirClosed || !lights.right.DirClosed)
+        if (!TimeToTurn)
         {
-            if (!lights.left.DirClosed)
+            KnowDir = false;
+            GoRight = false;
+            GoLeft = false;
+            return;
+        }
+        if (!KnowDir)
+        {
+            if (!Detector.left.DirClosed || !Detector.right.DirClosed)
             {
 
+                NoWay = false;
+                if (!Detector.left.DirClosed)
+                {
+                    KnowDir = true;
+                    GoLeft = true;
+                    GoRight = false;
+
+                }
+                else
+                {
+                    KnowDir = true;
+                    GoRight = true;
+                    GoLeft = false;
+
+                }
             }
             else
             {
-
+                GoLeft = false;
+                GoRight = false;
+                NoWay = true;
+                KnowDir = false;
             }
+        }
+
+    }
+    void ChangeDirection()
+    {
+        if (!NoWay)
+        {
+            if (GoLeft && !Detector.left.DirClosed)
+                transform.position += Vector3.left * Time.deltaTime * ChangeLineSpeed;
+            else
+            if (GoRight && !Detector.right.DirClosed)
+                transform.position += Vector3.right * Time.deltaTime * ChangeLineSpeed;
+            else
+                KnowDir = false;
         }
     }
 

@@ -14,7 +14,7 @@ public class cars : MonoBehaviour
     border GBorder;
     Rigidbody rig;
     [SerializeField] bool TimeToTurn = false, stop = false;
-    [SerializeField] LightManager lights;
+    [SerializeField] LightManager Detector;
     [Header("will delete after complete")]
     [SerializeField]
     GameObject front, back;
@@ -23,7 +23,8 @@ public class cars : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "ground" && collision.gameObject.tag != "Player"&& collision.gameObject.layer!=LayerMask.NameToLayer("Cars"))
+        if (collision.gameObject.tag != "ground" && collision.gameObject.tag != "Player"
+            && collision.gameObject.layer!=LayerMask.NameToLayer("Cars"))
             Destroy(gameObject);
     }
     private void Awake()
@@ -34,7 +35,6 @@ public class cars : MonoBehaviour
     }
     void Start()
     {
-
         tag = "Obs";
         if (gameObject.GetComponents<BoxCollider>().Length == 0)
             gameObject.AddComponent<BoxCollider>().enabled = true;
@@ -44,7 +44,7 @@ public class cars : MonoBehaviour
         rig.useGravity = true;
         GBorder = FindObjectOfType<border>();
         DefaultSpeed = Zspeed;
-        lights = transform.Find("Lights").GetComponent<LightManager>();
+        Detector = transform.Find("Detector").GetComponent<LightManager>();
         defRot = transform.rotation;
         if (Inverse)
         {
@@ -61,7 +61,7 @@ public class cars : MonoBehaviour
 
     void AIMoveBehavior()
     {
-        if (lights.front.DirClosed == true)
+        if (Detector.front.DirClosed == true)
             TimeToTurn = true;
         else
             TimeToTurn = false;
@@ -71,7 +71,7 @@ public class cars : MonoBehaviour
         //badan rooye An kar shavad
         if (TimeToTurn)
         {
-            front = lights.FrontObject;
+            front = Detector.FrontObject;
             if (front.gameObject != null && front.gameObject.activeInHierarchy)
             {
                 if (front.layer == LayerMask.NameToLayer("Cars"))
@@ -79,15 +79,15 @@ public class cars : MonoBehaviour
             }
             if (Inverse)
             {
-                if (!lights.left.DirClosed || !lights.right.DirClosed)
+                if (!Detector.left.DirClosed || !Detector.right.DirClosed)
                 {
                     var temp = transform.rotation;
-                    if (!lights.left.DirClosed)
+                    if (!Detector.left.DirClosed)
                     {
                         temp = Quaternion.Euler(0, transform.rotation.eulerAngles.y - angle * Time.deltaTime, 0);
                     }
                     else
-                    if (!lights.right.DirClosed)
+                    if (!Detector.right.DirClosed)
                     {
                         temp = Quaternion.Euler(0, transform.rotation.eulerAngles.y + angle * Time.deltaTime, 0);
 
