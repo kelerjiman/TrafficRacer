@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public static List<Spawner> Lines;
     public static float GlobalSpeed = 5f;
-    [Range(0,1)]
+    [Range(0, 1)]
     public static float ChangeLineSpeed = 0.5f;
     [Range(0, 1)]
     public static float RotateSpeed = 0.5f;
@@ -36,9 +36,13 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         var temp = FindObjectsOfType<cars>();
-        if (temp.Length > MaxCarInGame)
+        var temp2 = FindObjectsOfType<NormCars>();
+        if (temp.Length > MaxCarInGame || temp2.Length > MaxCarInGame)
         {
-            Destroy(temp[0].gameObject);
+            if (temp.Length > MaxCarInGame)
+                Destroy(temp[0].gameObject);
+            if (temp2.Length > MaxCarInGame)
+                Destroy(temp2[0].gameObject);
         }
         StartCoroutine(DestroyUnwantedCars());
     }
