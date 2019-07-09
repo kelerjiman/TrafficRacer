@@ -27,6 +27,7 @@ public class LightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetDirObject();
         if (Is_DayTime != Sun.IsDay)
         {
             Is_DayTime = Sun.IsDay;
@@ -35,9 +36,14 @@ public class LightManager : MonoBehaviour
     }
     void InDay()
     {
+        Is_DayTime = Sun.IsDay;
         foreach (var item in FrontLight)
         {
             item.enabled = !Is_DayTime;
+            if (Is_DayTime)
+                item.transform.parent.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+            else
+                item.transform.parent.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
         }
         foreach (var item in BackLight)
         {
@@ -46,7 +52,17 @@ public class LightManager : MonoBehaviour
                 item.transform.parent.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
             else
                 item.transform.parent.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-            Is_DayTime = Sun.IsDay;
         }
+
     }
+    void SetDirObject()
+    {
+        FrontObject = right.DirObject;
+        BackObject = back.DirObject;
+        RightObject = right.DirObject;
+        LeftObject = right.DirObject;
+    }
+    /*
+     badan modify shavad
+     */
 }
