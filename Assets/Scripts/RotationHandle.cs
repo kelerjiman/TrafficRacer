@@ -14,13 +14,15 @@ public class RotationHandle : MonoBehaviour
     cars InverseCar;
     border GBorder;
     Quaternion DefRot, NewRot;
+    bool Is_Inverse = false;
     void Start()
     {
         NewRot = transform.rotation;
         DefRot = NewRot;
         H_R_Speed = GameManager.RotateSpeed;
         GBorder = FindObjectOfType<border>();
-        if (transform.parent.parent.GetComponent<Spawner>().reverseLine)
+        Is_Inverse = transform.parent.parent.GetComponent<Spawner>().reverseLine;
+        if (Is_Inverse)
         {
             InverseCar = transform.parent.GetComponent<cars>();
         }
@@ -40,6 +42,14 @@ public class RotationHandle : MonoBehaviour
     }
     void Direction()
     {
+        if (Is_Inverse)
+            EnveseCarDirection();
+        else
+            NormCarDirection();
+    }
+
+    void EnveseCarDirection()
+    {
         if (InverseCar.TimeToTurn)
         {
             if (InverseCar.GoRight)
@@ -56,6 +66,25 @@ public class RotationHandle : MonoBehaviour
             Input_setY = 0;
         }
     }
+    void NormCarDirection()
+    {
+        if (NormalCars.TimeToTurn)
+        {
+            if (NormalCars.GoRight)
+            {
+                Input_setY = +1;
+            }
+            if (NormalCars.GoLeft)
+            {
+                Input_setY = -1;
+            }
+        }
+        if (!NormalCars.TimeToTurn || NormalCars.NoWay || !NormalCars.KnowDir)
+        {
+            Input_setY = 0;
+        }
+    }
+
     void Handling()
     {
         if (transform.eulerAngles.y < maxAngle && Input_setY == 1)
@@ -64,12 +93,12 @@ public class RotationHandle : MonoBehaviour
             NewRot = Quaternion.Euler(0, transform.rotation.eulerAngles.y + Input_setY, 0);
         if (Input_setY != 0)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, NewRot, H_R_Speed );
+            transform.rotation = Quaternion.Lerp(transform.rotation, NewRot, H_R_Speed);
             print(transform.rotation.eulerAngles.y);
         }
         else
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, DefRot, H_R_Speed );
+            transform.rotation = Quaternion.Lerp(transform.rotation, DefRot, H_R_Speed);
 
         }
     }

@@ -10,9 +10,7 @@ public class NormCars : MonoBehaviour
     float H_R_Speed = 1f;
     Quaternion NewRot;
     [SerializeField] Transform RotationChild;
-    [SerializeField] bool Inverse;
-    border GBorder;
-    Rigidbody rig;
+    public bool Inverse = false;
     public bool TimeToTurn = false, NoWay = false, GoLeft = false, GoRight = false, KnowDir = false;
     [SerializeField] LightManager Detector;
     [Header("will delete after complete")]
@@ -43,7 +41,7 @@ public class NormCars : MonoBehaviour
     {
         if (Detector.back.DirClosed && Detector.BackObject != null)
         {
-            if (Detector.BackObject.layer == LayerMask.NameToLayer("Cars"))
+            if (Detector.BackObject.layer == LayerMask.NameToLayer("NormCar"))
                 Zspeed = Detector.BackObject.GetComponent<NormCars>().Zspeed;
         }
         else
