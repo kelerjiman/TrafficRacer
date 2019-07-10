@@ -57,10 +57,10 @@ public class LightManager : MonoBehaviour
     }
     void SetDirObject()
     {
-        FrontObject = right.DirObject;
+        FrontObject = front.DirObject;
         BackObject = back.DirObject;
         RightObject = right.DirObject;
-        LeftObject = right.DirObject;
+        LeftObject = left.DirObject;
     }
     /*
      badan modify shavad
