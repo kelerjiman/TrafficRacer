@@ -10,15 +10,14 @@ public class NormCars : MonoBehaviour
     float H_R_Speed = 1f;
     Quaternion NewRot;
     [SerializeField] Transform RotationChild;
+    [SerializeField] bool Inverse;
     border GBorder;
     Rigidbody rig;
-    [SerializeField] bool TimeToTurn = false, NoWay = false, GoLeft = false, GoRight = false, KnowDir = false;
+    public bool TimeToTurn = false, NoWay = false, GoLeft = false, GoRight = false, KnowDir = false;
     [SerializeField] LightManager Detector;
     [Header("will delete after complete")]
     [SerializeField]
     GameObject front, back;
-    [SerializeField]
-    float angle = 30f;
     private void Start()
     {
         RotationChild = transform.Find("RotationChild");
