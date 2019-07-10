@@ -65,11 +65,14 @@
     <Compile Include="Assets\Scripts\Decoration.cs" />
     <Compile Include="Assets\Scripts\EncDecScale.cs" />
     <Compile Include="Assets\Scripts\EncDecSpeed.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\LightManager.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\NormCars.cs" />
     <Compile Include="Assets\Scripts\Obstucles.cs" />
     <Compile Include="Assets\Scripts\PowerUpSpawner.cs" />
     <Compile Include="Assets\Scripts\Road.cs" />
+    <Compile Include="Assets\Scripts\RotationHandle.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\UnderLightColliders.cs" />
     <None Include="Assets\City Adventure\Plugins\ColorSuite\Shader\ColorSuite.shader" />
