@@ -18,6 +18,7 @@ public class NormCars : MonoBehaviour
     GameObject front, back;
     private void Start()
     {
+        tag = "Obs";
         RotationChild = transform.Find("RotationChild");
         NewRot = transform.rotation;
         ChangeLineSpeed = GameManager.ChangeLineSpeed;
