@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
+[RequireComponent(typeof(LawsManager))]
 public class SignBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
