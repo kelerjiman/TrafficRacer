@@ -11,14 +11,14 @@ public class SignHolder : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Parent
+        Parent.OnEnterHandle();
     }
     private void OnTriggerStay(Collider other)
     {
-
+        Parent.OnStayHandle();
     }
     private void OnTriggerExit(Collider collision)
     {
-
+        Parent.OnExitHandle();
     }
 }
