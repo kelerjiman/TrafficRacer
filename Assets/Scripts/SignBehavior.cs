@@ -24,21 +24,38 @@ public class SignBehavior : MonoBehaviour
     private void Start()
     {
         GlobalSpeed = GameManager.GlobalSpeed;
+        ReloadInfo();
     }
+    private void Update()
+    {
+        MoveHandle();
+    }
+
+    private void ReloadInfo()
+    {
+        for (int i = 0; i < SignText.Count; i++)
+        {
+            if (messages[i] != "")
+                SignText[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = messages[i];
+            else
+                SignText[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+        }
+    }
+
     void MoveHandle()
     {
         transform.Translate(0, 0, GlobalSpeed * Time.deltaTime);
     }
     public void OnEnterHandle()
     {
-        Debug.Log("On Enter Handle");
+        //define the message and starting 
     }
     public void OnStayHandle()
     {
-        Debug.Log("On Stay Handle");
+        //define timers and etc
     }
     public void OnExitHandle()
     {
-        Debug.Log("On Exit Handle");
+        //stop functions and caculate result
     }
 }
