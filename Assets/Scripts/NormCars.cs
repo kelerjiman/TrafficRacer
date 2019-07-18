@@ -18,6 +18,7 @@ public class NormCars : MonoBehaviour
     GameObject front, back;
     private void Start()
     {
+        gameObject.layer = LayerMask.NameToLayer("Cars");
         tag = "Obs";
         RotationChild = transform.Find("RotationChild");
         NewRot = transform.rotation;
@@ -42,7 +43,7 @@ public class NormCars : MonoBehaviour
     {
         if (Detector.back.DirClosed && Detector.BackObject != null)
         {
-            if (Detector.BackObject.layer == LayerMask.NameToLayer("NormCar"))
+            if (Detector.BackObject.layer == LayerMask.NameToLayer("Cars"))
                 Zspeed = Detector.BackObject.GetComponent<NormCars>().Zspeed;
         }
         else
