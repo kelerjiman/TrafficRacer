@@ -4,16 +4,63 @@ using UnityEngine;
 
 public class RoadTile : MonoBehaviour
 {
-    [SerializeField] float speed = 1;
-    private void Update()
+    public string TYPE_OF_SIGN = string.Empty;
+    public GameObject NAME_OF_SIGN;
+    [SerializeField] bool Is_Signed = false;
+    public bool Is_TwoLine = true;
+    [SerializeField] Road road;
+
+    private void Awake()
     {
-        speed = GameManager.GlobalSpeed;
-        MovingBehavior();
+        gameObject.layer = LayerMask.NameToLayer("GroundTile");
+        road = FindObjectOfType<Road>();
     }
-    void MovingBehavior()
+    private void Start()
     {
-        var temp = transform.position;
-        temp.z -= 1;
-        transform.position = Vector3.Lerp(transform.position, temp, speed * Time.deltaTime);
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (Is_Signed)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                Debug.Log("i colliding wit Player");
+                SignedCollisionHandle();
+            }
+        }
+
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+
+    }
+
+    private void SignedCollisionHandle()
+    {
+        ///این قسمت از کد تصمیم به چند لاین کردن می گیرد
+        //برای تغییر لاین از 2 به 4 و بلعکس
+        switch (TYPE_OF_SIGN)
+        {
+            case "Converting":
+                {
+                    ConvertingLines();
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+    private void ConvertingLines()
+    {
+        if (Is_TwoLine)
+        {
+            road.SignedTileHandle(4, NAME_OF_SIGN);
+        }
+        else
+        {
+            road.SignedTileHandle(2, NAME_OF_SIGN);
+        }
     }
 }

@@ -49,6 +49,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Obs")
         {
             IsAccident = true;
+            GameManager.Accident = true;
 
         }
     }
@@ -94,6 +95,7 @@ public class Movement : MonoBehaviour
             return;
 
         NewPos.x += InputX_Set;
+        NewPos.z += GameManager.GlobalSpeed * Time.deltaTime;
         transform.position = Vector3.Lerp(transform.position, NewPos, H_P_Speed * Time.deltaTime);
 
     }

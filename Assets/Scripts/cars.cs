@@ -21,7 +21,7 @@ public class cars : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Cars");
         RotationChild = transform.Find("RotationChild");
         NewRot = transform.rotation;
-        ChangeLineSpeed = GameManager.ChangeLineSpeed;
+        //ChangeLineSpeed = GameManager.ChangeLineSpeed;
         DefaultSpeed = Zspeed;
         Detector = transform.Find("Detector").GetComponent<LightManager>();
     }

@@ -19,7 +19,7 @@ public class RotationHandle : MonoBehaviour
     {
         NewRot = transform.rotation;
         DefRot = NewRot;
-        H_R_Speed = GameManager.RotateSpeed;
+        //H_R_Speed = GameManager.RotateSpeed;
         GBorder = FindObjectOfType<border>();
         Is_Inverse = transform.parent.parent.GetComponent<Spawner>().reverseLine;
         if (Is_Inverse)
@@ -36,7 +36,7 @@ public class RotationHandle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        H_R_Speed = GameManager.RotateSpeed;
+        //H_R_Speed = GameManager.RotateSpeed;
         Direction();
         Handling();
     }
