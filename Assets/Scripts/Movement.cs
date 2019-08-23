@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Obs")
         {
             IsAccident = true;
-            GameManager.Accident = true;
+            GameManager.Is_Accident = true;
 
         }
     }

@@ -6,6 +6,8 @@ public class ConstantBehavior : MonoBehaviour
 {
     Vector3 defPos;
     GameObject player;
+    public float NewXPos = 0;
+    public float speed = 2;
     void Start()
     {
         defPos = transform.position;
@@ -17,7 +19,14 @@ public class ConstantBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GameManager.Accident)
-        transform.position = new Vector3(transform.position.x, transform.position.y, defPos.z + player.transform.position.z);
+        if (!GameManager.Is_Accident)
+            transform.position =
+                new Vector3(defPos.x,
+                transform.position.y, defPos.z + player.transform.position.z);
+        if (transform.position.x != NewXPos)
+        {
+            defPos.x = Mathf.Lerp(defPos.x, NewXPos, speed * Time.deltaTime);
+
+        }
     }
 }

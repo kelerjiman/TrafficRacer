@@ -13,6 +13,14 @@ public class BuildingSpawner : MonoBehaviour
     [SerializeField] float Speed = -30f;
     [SerializeField] string ParentName;
     [SerializeField] bool IsRightDirection = false;
+
+
+    /// <summary>
+    /// NEWEST CODE DONT DELETE IT
+    /// </summary>
+    /// 
+    /// 
+        ////////////////////////////////////////
     int counter = 0;
     void Start()
     {

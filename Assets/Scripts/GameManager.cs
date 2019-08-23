@@ -7,14 +7,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     //public static List<Spawner> Lines;
     public static float GlobalSpeed = 5f;
-    public static bool Accident = false;
-    
+    public static bool Is_Accident = false;
     //[Range(0, 1)]
     //public static float ChangeLineSpeed = 0.5f;
     //[Range(0, 1)]
     //public static float RotateSpeed = 0.5f;
 
     [SerializeField] float PGlobalSpeed = 5f;
+    [SerializeField] int changeAmount = 0;
     //[Range(0, 1)]
     //[SerializeField]
     //float PChangeLineSpeed = 0.5f;
