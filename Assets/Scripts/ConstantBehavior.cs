@@ -6,6 +6,7 @@ public class ConstantBehavior : MonoBehaviour
 {
     Vector3 defPos;
     GameObject player;
+    [HideInInspector]
     public float NewXPos = 0;
     public float speed = 2;
     void Start()

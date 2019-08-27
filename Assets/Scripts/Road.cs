@@ -19,7 +19,7 @@ public class Road : MonoBehaviour
     [Header("Current GameObject for instantiating")]
     [SerializeField]
     GameObject CurrentGameObject;
-    [SerializeField] bool Is_TwoLineSelected = true;
+    public bool Is_TwoLineSelected = true;
     GameObject player;
     [Header("Tile Properties")]
     [SerializeField]
@@ -27,9 +27,6 @@ public class Road : MonoBehaviour
     [SerializeField] float spawnZ = -210;
     [SerializeField] int TileCount = 22;
     [SerializeField] Vector3 CurrentPos = Vector3.zero;
-    [Header("badan delete mishavad")]
-    [SerializeField]
-    int _PrefabIndex = 2;
     private void Awake()
     {
         CurrentPos = transform.position;
@@ -75,7 +72,7 @@ public class Road : MonoBehaviour
         }
         if (CurrentGameObject.name == "RTtoF" || CurrentGameObject.name == "LFtoT")
         {
-            CurrentPos.x += 5;
+            CurrentPos.x += 5   ;
         }
         if (Is_TwoLineSelected)
         {

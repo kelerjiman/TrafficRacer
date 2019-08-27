@@ -13,10 +13,18 @@ public class CRSCorner : MonoBehaviour
             var x = FindObjectOfType<ConstantBehavior>();
             x.NewXPos = x.transform.position.x + ChangeConsPos;
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obs"))
+        {
+            Destroy(other.gameObject);
+        }
     }
-    void Start()
+    void Awake()
     {
-
+        var BTemp = FindObjectsOfType<BuildingSpawner>();
+        foreach (var item in BTemp)
+        {
+            item.NewXPos = item.CurrentPos.x + ChangeConsPos;
+        }
     }
 
     // Update is called once per frame

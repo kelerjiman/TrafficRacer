@@ -1,26 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 public class Building : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float zSpeed = -30f;
-    [Range(0, 1)]
-    public float Speed = 0.5f;
     border GBorder;
-    void Start()
+    Rigidbody rig;
+    void Awake()
     {
-        gameObject.AddComponent<BoxCollider>().enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("Obs");
+        rig = GetComponent<Rigidbody>();
         if (GetComponents<MeshCollider>().Length > 0)
         {
             Destroy(GetComponent<MeshCollider>());
         }
         GBorder = FindObjectOfType<border>();
+        rig.useGravity = false;
+        rig.constraints = RigidbodyConstraints.FreezeAll;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        transform.Translate(zSpeed * Time.deltaTime, 0, 0);
     }
 }

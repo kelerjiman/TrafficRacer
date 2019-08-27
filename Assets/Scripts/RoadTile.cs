@@ -9,7 +9,6 @@ public class RoadTile : MonoBehaviour
     [SerializeField] bool Is_Signed = false;
     public bool Is_TwoLine = true;
     [SerializeField] Road road;
-
     private void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("GroundTile");

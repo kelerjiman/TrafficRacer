@@ -6,50 +6,51 @@ public class BuildingSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] List<GameObject> PrefabsList;
-    [SerializeField] List<GameObject> RoadSignPrefabs;
-    [Header("Respawn Properties")]
-    [SerializeField]
-    float respawn_Speed = 1f;
-    [SerializeField] float Speed = -30f;
-    [SerializeField] string ParentName;
-    [SerializeField] bool IsRightDirection = false;
-
-
-    /// <summary>
-    /// NEWEST CODE DONT DELETE IT
-    /// </summary>
-    /// 
-    /// 
-        ////////////////////////////////////////
-    int counter = 0;
-    void Start()
+    [SerializeField] int TileLenght = 10;
+    [SerializeField] float spawnZ = -210;
+    [SerializeField] int TileCount = 22;
+    public Vector3 CurrentPos = Vector3.zero;
+    public float NewXPos = 0;
+    GameObject player;
+    Road road;
+    private void Awake()
     {
-        StartCoroutine(RD_Building());
-        ParentName = name;
+        CurrentPos = transform.position;
+        NewXPos = CurrentPos.x;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-
+        road = FindObjectOfType<Road>();
+        player = FindObjectOfType<Movement>().gameObject;
+        for (int i = 0; i < PrefabsList.Count; i++)
+        {
+            TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
+        }
     }
-    IEnumerator RD_Building()
+    private void Update()
     {
-        yield return new WaitForSeconds(respawn_Speed);
-        counter = Random.Range(0, PrefabsList.Count);
-        GameObject x;
-        if (IsRightDirection)
+        if (CurrentPos.x != NewXPos)
         {
-            x = Instantiate(PrefabsList[counter], transform.position, Quaternion.Euler(0, 270f, 0));
-            x.GetComponent<Building>().zSpeed = Speed;
+            var temp = CurrentPos;
+            temp.x = NewXPos;
+            CurrentPos = temp;
         }
-        else
+        if (player.transform.position.z > (spawnZ - TileCount * TileLenght) || GetComponentsInChildren<Transform>().Length < TileCount)
         {
-            x = Instantiate(PrefabsList[counter], transform.position, Quaternion.Euler(0, 90f, 0));
-            x.GetComponent<Building>().zSpeed = -Speed;
+            TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
         }
-        x.transform.parent = transform;
-        x.tag = "Obs";
-        StartCoroutine(RD_Building());
+    }
+    void TileRespawnHandle(GameObject obj)
+    {
+        GameObject tile;
+        tile = Instantiate(obj) as GameObject;
+        tile.transform.parent = transform;
+        tile.transform.position = Vector3.forward * spawnZ;
+        var tempX = CurrentPos.x + Mathf.Sign(CurrentPos.x) * (tile.GetComponent<BoxCollider>().bounds.extents.x / 2);
+        tile.transform.position = new Vector3(tempX, CurrentPos.y, tile.transform.position.z);
+        spawnZ += tile.GetComponent<BoxCollider>().bounds.size.z;
+    }
+    public void ConvertingLines(bool Is_TwoLine, bool Is_LeftConverting)
+    {
     }
 }

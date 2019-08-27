@@ -10,9 +10,9 @@ public class border : MonoBehaviour
         {
             Time.timeScale = 0;
         }
-        else
-        {
-                Destroy(collision.gameObject);
-        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        Destroy(collision.gameObject);
     }
 }
