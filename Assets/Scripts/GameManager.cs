@@ -4,47 +4,34 @@ using UnityEngine;
 using System.Linq;
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //public static List<Spawner> Lines;
-    public static float GlobalSpeed = 5f;
-    public static bool Is_Accident = false;
-    //[Range(0, 1)]
-    //public static float ChangeLineSpeed = 0.5f;
-    //[Range(0, 1)]
-    //public static float RotateSpeed = 0.5f;
+    public static GameManager GM;
+    //In game UI elements
+    public int GM_In_gamecash = 0; 
+    public float GM_MainSpeed = 5f;
+    public bool GM_Is_Accident = false;
+    /*به نحوه انتخاب وسیله فکر شود 
+     قرار است که این گیم ابجکت در تمام بازی ست شود*/
+    public GameObject[] GM_Player;
 
-    [SerializeField] float PGlobalSpeed = 5f;
-    [SerializeField] int changeAmount = 0;
-    //[Range(0, 1)]
-    //[SerializeField]
-    //float PChangeLineSpeed = 0.5f;
-    //[Range(0, 1)]
-    //[SerializeField]
-    //float PRotateSpeed = 0.5f;
-    //[SerializeField] int MaxCarInGame = 10;
+    [SerializeField] float m_PGlobalSpeed = 5f;
+    [SerializeField] int m_changeAmount = 0;
     void Start()
     {
-        //Lines = FindObjectsOfType<Spawner>().ToList();
-        //StartCoroutine(DestroyUnwantedCars());
+        GM = this;
     }
     private void Update()
     {
-        GlobalSpeed = PGlobalSpeed;
-        //ChangeLineSpeed = PChangeLineSpeed;
-        //RotateSpeed = PRotateSpeed;
+        GM_MainSpeed = m_PGlobalSpeed;
     }
-    //IEnumerator DestroyUnwantedCars()
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    var temp = FindObjectsOfType<cars>();
-    //    var temp2 = FindObjectsOfType<NormCars>();
-    //    if (temp.Length > MaxCarInGame || temp2.Length > MaxCarInGame)
-    //    {
-    //        if (temp.Length > MaxCarInGame)
-    //            Destroy(temp[0].gameObject);
-    //        if (temp2.Length > MaxCarInGame)
-    //            Destroy(temp2[0].gameObject);
-    //    }
-    //    StartCoroutine(DestroyUnwantedCars());
-    //}
+    void Handle_Condition()
+    {
+
+    }
+    void Handle_Accident()
+    {
+        if (GM_Is_Accident)
+        {
+
+        }
+    }
 }

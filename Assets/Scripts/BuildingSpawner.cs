@@ -1,56 +1,89 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BuildingSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] List<GameObject> PrefabsList;
-    [SerializeField] int TileLenght = 10;
-    [SerializeField] float spawnZ = -210;
-    [SerializeField] int TileCount = 22;
-    public Vector3 CurrentPos = Vector3.zero;
-    public float NewXPos = 0;
-    GameObject player;
-    Road road;
+    [SerializeField]
+    List<GameObject> PrefabsList;
+    private GameObject currentOBJ;
+
+    [SerializeField]
+    int TileCount = 20;
+
+    [SerializeField]
+    int refSize = 10;
+
+    [Header("")]
+    Movement Player;
+
+    bool is_TwoLine = true;
+
+    public float SpawnZ = 0f;
+
+    [SerializeField] float SpawnX = 0f;
+
+    public int is_RightSide = 1;
+    public float XPadding = 0;
+    public float ZPadding = 0;
+
+
+
+
+    int Direction = 0;
+    bool is_TimeToMove = false;
+
     private void Awake()
     {
-        CurrentPos = transform.position;
-        NewXPos = CurrentPos.x;
+        for (int i = 0; i < TileCount; i++)
+        {
+            Handle_Spawn(PrefabsList[i]);
+        }
     }
+
     private void Start()
     {
-        road = FindObjectOfType<Road>();
-        player = FindObjectOfType<Movement>().gameObject;
-        for (int i = 0; i < PrefabsList.Count; i++)
-        {
-            TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
-        }
+        Player = FindObjectOfType<Movement>();
     }
     private void Update()
     {
-        if (CurrentPos.x != NewXPos)
+        if (Player.transform.position.z > (SpawnZ - TileCount * refSize))
         {
-            var temp = CurrentPos;
-            temp.x = NewXPos;
-            CurrentPos = temp;
-        }
-        if (player.transform.position.z > (spawnZ - TileCount * TileLenght) || GetComponentsInChildren<Transform>().Length < TileCount)
-        {
-            TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
+            Handle_Spawn(currentOBJ);
         }
     }
-    void TileRespawnHandle(GameObject obj)
+    void Handle_Spawn(GameObject tile)
     {
-        GameObject tile;
-        tile = Instantiate(obj) as GameObject;
-        tile.transform.parent = transform;
-        tile.transform.position = Vector3.forward * spawnZ;
-        var tempX = CurrentPos.x + Mathf.Sign(CurrentPos.x) * (tile.GetComponent<BoxCollider>().bounds.extents.x / 2);
-        tile.transform.position = new Vector3(tempX, CurrentPos.y, tile.transform.position.z);
-        spawnZ += tile.GetComponent<BoxCollider>().bounds.size.z;
+        var _tile = Instantiate(tile) as GameObject;
+        Handle_Rotation(_tile, is_RightSide);
+        _tile.transform.parent = transform;
+        Handle_Z_Spawn(_tile);
+        currentOBJ = PrefabsList[UnityEngine.Random.Range(0, PrefabsList.Count)];
     }
-    public void ConvertingLines(bool Is_TwoLine, bool Is_LeftConverting)
+
+    private void Handle_Z_Spawn(GameObject tile)
     {
+        Vector3 _size = tile.GetComponent<Collider>().bounds.size;
+        var tempPos = tile.transform.position;
+        tempPos.z = SpawnZ + (_size.z / 2) + ZPadding;
+        tile.transform.position = tempPos;
+        Handle_X_Spawn(tile, _size, tempPos, is_RightSide);
+        SpawnZ += _size.z + ZPadding;
+    }
+    private void Handle_X_Spawn(GameObject tile, Vector3 _size, Vector3 pos, int rightSide)
+    {
+        pos.x = SpawnX + is_RightSide * ((_size.x / 2) + XPadding);
+        tile.transform.position = pos;
+    }
+    private void Handle_Rotation(GameObject tile, int _rightSide)
+    {
+        var temp = tile.transform.localScale;
+        temp.x *= _rightSide;
+        tile.transform.localScale = temp;
+    }
+    public void Handle_Move(int value)
+    {
+            SpawnX += value;
     }
 }

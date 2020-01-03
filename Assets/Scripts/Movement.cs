@@ -6,151 +6,129 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Movement : MonoBehaviour
 {
-    //private Vars
-    Vector3 DefPos = Vector3.zero;
-    Vector3 NewPos = Vector3.zero;
-    Quaternion DefRot, NewRot;
+    [SerializeField] VehichleProp VProps;//خصوصیات یک وسیله
+    [SerializeField] float MainSpeed = 0;//سرعت اصلی بازی که از طرف هسته اصلی تنظیم می شود
+    public float Z_Input = 0;//برای تشخیص گاز و ترمز استفاده می شود 
+    [SerializeField]
+    public float X_Input = 0;// برای تشخیص حرکت به راست و چپ استفاده می شود
     Rigidbody rig;
-
-    //public or Inspector Vars
-    [SerializeField] float InputX_Set = 0;
-    [SerializeField] float AngleY = 1f;
-    [SerializeField] border GameBorder;
-    [SerializeField] float MaxSpeed = 60f;
-
-    [Header("Vehicle Properties")]
-    [SerializeField]
-    float Vehicle_MaxSpeed = 1f;
-    [SerializeField] float Vehicle_GearCount = 4f;
-    [SerializeField] float Vehicle_Wieght = 500f;
-
-    //handling 
-    [Header("Handling")]
-    [SerializeField]
-    [Range(0, 1)]
-    float H_P_Speed = 0f;
-    [Range(0, 1)]
-    [SerializeField]
-    float H_R_Speed = 0.5f;
-    /// <summary>
-    /// for Stabel Condition
-    /// </summary>
-    bool StableCondition = true;
-    //Accident 
-    [Header("accident Properties")]
-    [SerializeField]
-    [Tooltip("reaction velocity to player ")]
-    [Range(0, 1)]
-    float acc_reactionForce = 40f;
-    bool IsAccident = false;
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obs")
+        if (collision.gameObject.tag != "ground")
         {
-            IsAccident = true;
-            GameManager.Is_Accident = true;
-
+            GameManager.GM.GM_Is_Accident = true;
+            MainSpeed = 0;
+            rig.velocity = Vector3.zero;
         }
     }
-
     private void Awake()
     {
-        gameObject.layer = LayerMask.NameToLayer("Player");
-        tag = "Player";
-        GameBorder = FindObjectOfType<border>();
-        if (GetComponents<MeshCollider>().Length > 0)
-        {
-            Component.Destroy(gameObject.GetComponent<MeshCollider>());
-        }
-    }
-    private void FixedUpdate()
-    {
-        Direction();
-        Handling();
+        rig = GetComponent<Rigidbody>();
+        rig.mass = VProps.Get_Mass();
     }
     private void Start()
     {
-        rig = GetComponent<Rigidbody>();
-        DefPos = transform.position;
-        NewPos = DefPos;
-        DefRot = transform.rotation;
-        NewRot = DefRot;
-        NewRot = Quaternion.AngleAxis(3f, Vector3.left);
-
+        Speed_Norm();
     }
     private void Update()
     {
-        move();
-        AccidentFunc();
-        AccAndBreaking();
-
-    }
-    private void LateUpdate()
-    {
-    }
-    void move()
-    {
-        if (IsAccident)
+        if (GameManager.GM.GM_Is_Accident)
             return;
-
-        NewPos.x += InputX_Set;
-        NewPos.z += GameManager.GlobalSpeed * Time.deltaTime;
-        transform.position = Vector3.Lerp(transform.position, NewPos, H_P_Speed * Time.deltaTime);
-
+        MainSpeed = GameManager.GM.GM_MainSpeed;
+        Handle_Speed();
+        Handle_X_Move();
     }
-    void Direction()
+    //متد نشخیص جهت در محور ایکس ها
+    void Condition_Dir()
     {
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                InputX_Set = -1f;
-            }
+        X_Input = Input.GetAxisRaw("Horizontal");
+    }
+
+    //متد تشخیص گاز و ترمز
+    void Condition_Gear()
+    {
+        Z_Input = Input.GetAxisRaw("Vertical");
+    }
+    //متد تنظیم کننده سرعت وسیله
+    void Handle_Speed()
+    {
+        if (Z_Input != 0)
+            if (Z_Input < 0)
+                Speed_Dec();
             else
-            {
-                InputX_Set = 1f;
-            }
+                Speed_Enc();
+        Speed_Norm();
+        Handle_Speed_Anim();
+    }
+    //متد تنظیم کننده سرعت نرمال
+    void Speed_Norm()
+    {
+        if (rig.velocity.z >= MainSpeed)
+            return;
+        var temp = rig.velocity;
+        if (temp.z != MainSpeed)
+        {
+            temp.z = MainSpeed;
+        }
+        rig.velocity = Vector3.Lerp(rig.velocity, temp, Time.deltaTime);
+    }
+    //متد تنظیم کننده فرایند گاز دادن
+    public void Speed_Enc()
+    {
+        if (rig.velocity.z < GameManager.GM.GM_MainSpeed * 2)
+            rig.velocity += Vector3.forward * VProps.Get_Nitro() * Time.deltaTime;
+    }
+    //متد تنظیم کننده فرایند ترمز کردن
+    public void Speed_Dec()
+    {
+        /*حداقل و حداکثر سرعت را مشخص و با ترمز و گاز بین این دو تغییر ایجاد کند.*/
+        Vector3 temp = Vector3.forward * GameManager.GM.GM_MainSpeed;
+
+        rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Breaking()/* * Time.deltaTime*/);
+    }
+    //متد تنظیم کننده انیمیشن برای فرایند ترمز و گاز
+    void Handle_Speed_Anim()
+    {
+
+        var temp = transform.rotation;
+        temp = Quaternion.Euler(-3 * Z_Input, temp.eulerAngles.y, temp.eulerAngles.z);
+        if (Z_Input != 0)
+        {
+            transform.rotation =
+                Quaternion.Lerp(transform.rotation, temp, VProps.Get_Handling_Anim_Rate());
         }
         else
-            InputX_Set = 0;
+        {
+            temp = Quaternion.Euler(0, temp.eulerAngles.y, temp.eulerAngles.z);
+            transform.rotation =
+                Quaternion.Lerp(transform.rotation, temp, VProps.Get_Handling_Anim_Rate());
+        }
     }
-    void Handling()
+    //متد تنظیم کننده حرکت در مدار ایکس
+    void Handle_X_Move()
+    {
+        rig.velocity += Vector3.right * X_Input * VProps.Get_HandlingRate();
+        if (X_Input == 0)
+            rig.velocity = new Vector3(0, rig.velocity.y, rig.velocity.z);
+        Handle_X_Anim();
+    }
+    //متد تنظیم کننده انیمیشن برای حرکت در محور ایکس
+    void Handle_X_Anim()
     {
         var temp = transform.rotation;
-        temp = Quaternion.Euler(0, AngleY * InputX_Set, 0);
-        NewRot = temp;
-        if (InputX_Set != 0)
+        temp = Quaternion.Euler(temp.eulerAngles.x, 5 * X_Input, 3 * X_Input);
+        if (X_Input != 0)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, temp, H_R_Speed * Time.deltaTime);
-
+            transform.rotation =
+                Quaternion.Lerp(transform.rotation, temp, VProps.Get_Handling_Anim_Rate());
         }
         else
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, H_R_Speed * 2 * Time.deltaTime);
-
+            temp = Quaternion.Euler(temp.eulerAngles.x, 0, 0);
+            transform.rotation =
+                Quaternion.Lerp(transform.rotation, temp, VProps.Get_Handling_Anim_Rate());
         }
-    }
 
-    void AccidentFunc()
-    {
-        if (IsAccident)
-            transform.position = Vector3.Lerp(transform.position, GameBorder.transform.position, acc_reactionForce * Time.deltaTime);
-    }
-    void AccAndBreaking()
-    {
-        var temp = transform.rotation;
-        if (Input.GetKey(KeyCode.W))
-        {
-            temp = Quaternion.Euler(-10f, temp.eulerAngles.y, temp.eulerAngles.z);
-            transform.rotation = Quaternion.Lerp(transform.rotation, temp, H_R_Speed);
-        }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            temp = Quaternion.Euler(3f, temp.eulerAngles.y, temp.eulerAngles.z);
-            transform.rotation = Quaternion.Lerp(transform.rotation, temp, H_R_Speed);
-
-        }
     }
 }
 

@@ -20,13 +20,12 @@ public class ConstantBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Is_Accident)
+        if (!GameManager.GM.GM_Is_Accident)
             transform.position =
-                new Vector3(defPos.x,
-                transform.position.y, defPos.z + player.transform.position.z);
-        if (transform.position.x != NewXPos)
+                new Vector3(0, 0, defPos.z + player.transform.position.z);
+        else
         {
-            defPos.x = Mathf.Lerp(defPos.x, NewXPos, speed * Time.deltaTime);
+            transform.position += Vector3.forward * Time.deltaTime * GameManager.GM.GM_MainSpeed;
 
         }
     }

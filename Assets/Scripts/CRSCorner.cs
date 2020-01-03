@@ -20,11 +20,73 @@ public class CRSCorner : MonoBehaviour
     }
     void Awake()
     {
-        var BTemp = FindObjectsOfType<BuildingSpawner>();
-        foreach (var item in BTemp)
-        {
-            item.NewXPos = item.CurrentPos.x + ChangeConsPos;
-        }
+        //var BTemp = FindObjectsOfType<BuildingSpawner>();
+        //var Dec = FindObjectsOfType<Decoration>();
+        //if (name == "LTtoF(Clone)" || name == "RFtoT(Clone)")
+        //{
+        //    Debug.Log(name);
+        //    if (name == "LTtoF(Clone)")
+        //    {
+        //        foreach (var item in BTemp)
+        //        {
+        //            if (!item.is_RightSide)
+        //                item.XPadding = item.CurrentPos.x + ChangeConsPos;
+        //        }
+        //        foreach (var TempDec in Dec)
+        //        {
+        //            if (!TempDec.IsRightSide)
+        //                TempDec.NewXPos = TempDec.CurrentPos.x + ChangeConsPos;
+        //        }
+
+        //    }
+        //    else
+        //    {
+
+        //        foreach (var item in BTemp)
+        //        {
+        //            if (item.is_RightSide)
+        //                item.XPadding = item.CurrentPos.x + ChangeConsPos;
+        //        }
+        //        foreach (var TempDec in Dec)
+        //        {
+        //            if (TempDec.IsRightSide)
+        //                TempDec.NewXPos = TempDec.CurrentPos.x + ChangeConsPos;
+        //        }
+
+        //    }
+        //}
+        //else if (name == "LFtoT(Clone)" || name == "RTtoF(Clone)")
+        //{
+        //    Debug.Log(name);
+        //    if (name == "LFtoT(Clone)")
+        //    {
+        //        foreach (var item in BTemp)
+        //        {
+        //            if (item.is_RightSide)
+        //                item.XPadding = item.CurrentPos.x + ChangeConsPos;
+        //        }
+        //        foreach (var TempDec in Dec)
+        //        {
+        //            if (TempDec.IsRightSide)
+        //                TempDec.NewXPos = TempDec.CurrentPos.x + ChangeConsPos;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        foreach (var item in BTemp)
+        //        {
+        //            if (!item.is_RightSide)
+        //                item.XPadding = item.CurrentPos.x + ChangeConsPos;
+        //        }
+        //        foreach (var TempDec in Dec)
+        //        {
+        //            if (!TempDec.IsRightSide)
+        //                TempDec.NewXPos = TempDec.CurrentPos.x + ChangeConsPos;
+        //        }
+
+        //    }
+        //}
     }
 
     // Update is called once per frame

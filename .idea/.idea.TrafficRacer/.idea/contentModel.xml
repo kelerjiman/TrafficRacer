@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Git-Hubs\TrafficRacer" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="City Adventure" t="Include">
+          <e p="Plugins" t="Include">
+            <e p="ColorSuite" t="Include">
+              <e p="ColorSuite.cs" t="Include" />
+              <e p="Shader" t="Include">
+                <e p="ColorSuite.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Prefabs" t="Include">
+          <e p="HumanRef" t="Include">
+            <e p="License.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="border.cs" t="Include" />
+          <e p="Building.cs" t="Include" />
+          <e p="BuildingSpawner.cs" t="Include" />
+          <e p="cars.cs" t="Include" />
+          <e p="Coins.cs" t="Include" />
+          <e p="DayCycle.cs" t="Include" />
+          <e p="Decoration.cs" t="Include" />
+          <e p="EncDecScale.cs" t="Include" />
+          <e p="EncDecSpeed.cs" t="Include" />
+          <e p="LightManager.cs" t="Include" />
+          <e p="Movement.cs" t="Include" />
+          <e p="Obstucles.cs" t="Include" />
+          <e p="PowerUpSpawner.cs" t="Include" />
+          <e p="Road.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
+          <e p="UnderLightColliders.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="TrafficRacer.sln" t="IncludeFlat" />
+    </e>
+    <e p="C:\Users\Ah-66\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ah-66\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_TrafficRacer.143479890.00" t="ExcludeRecursive" />
+  </component>
+</project>

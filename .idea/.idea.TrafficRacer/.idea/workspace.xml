@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa2b3292-7858-4fef-aa5c-c93594d52253" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/cars.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <marker date="1562505445642" expanded="true" signature="6:78" ph="..." />
+                <marker date="1562505445642" expanded="true" signature="151:4297" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="701:788" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="805:1438" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="1338:1432" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="1496:1563" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="1590:1722" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="1751:4076" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="1817:3978" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2034:2780" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2119:2766" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2236:2394" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2468:2627" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2797:3968" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2854:2968" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="2989:3068" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="3136:3954" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="3253:3496" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="3570:3815" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="3991:4070" ph="{...}" />
+                <marker date="1562505445642" expanded="true" signature="4096:4295" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Coins.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
+              <folding>
+                <marker date="1562254750640" expanded="true" signature="6:78" ph="..." />
+                <marker date="1562254750640" expanded="true" signature="172:1168" ph="{...}" />
+                <marker date="1562254750640" expanded="true" signature="470:621" ph="{...}" />
+                <marker date="1562254750640" expanded="true" signature="522:614" ph="{...}" />
+                <marker date="1562254750640" expanded="true" signature="638:792" ph="{...}" />
+                <marker date="1562254750640" expanded="true" signature="850:1166" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Coins.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/cars.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/cars.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="170" />
+    <option name="y" value="91" />
+    <option name="width" value="1026" />
+    <option name="height" value="546" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="TrafficRacer" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="TrafficRacer" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assembly-CSharp" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="TrafficRacer" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assembly-CSharp" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assets" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="TrafficRacer" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assembly-CSharp" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assets" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="City Adventure" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="TrafficRacer" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assembly-CSharp" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assets" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="City Adventure" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Plugins" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="TrafficRacer" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assembly-CSharp" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Assets" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="City Adventure" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Plugins" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="ColorSuite" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa2b3292-7858-4fef-aa5c-c93594d52253" name="Default Changelist" comment="" />
+      <created>1562510084644</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1562510084644</updated>
+      <workItem from="1562510092672" duration="359000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="359000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494331" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="NuGet" weight="0.3296" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.3296" />
+      <window_info anchor="bottom" id="Performance Profiler" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Unit Tests Coverage" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/cars.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <marker date="1562505445642" expanded="true" signature="6:78" ph="..." />
+            <marker date="1562505445642" expanded="true" signature="151:4297" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="701:788" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="805:1438" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="1338:1432" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="1496:1563" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="1590:1722" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="1751:4076" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="1817:3978" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2034:2780" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2119:2766" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2236:2394" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2468:2627" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2797:3968" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2854:2968" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="2989:3068" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="3136:3954" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="3253:3496" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="3570:3815" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="3991:4070" ph="{...}" />
+            <marker date="1562505445642" expanded="true" signature="4096:4295" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Coins.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+          <folding>
+            <marker date="1562254750640" expanded="true" signature="6:78" ph="..." />
+            <marker date="1562254750640" expanded="true" signature="172:1168" ph="{...}" />
+            <marker date="1562254750640" expanded="true" signature="470:621" ph="{...}" />
+            <marker date="1562254750640" expanded="true" signature="522:614" ph="{...}" />
+            <marker date="1562254750640" expanded="true" signature="638:792" ph="{...}" />
+            <marker date="1562254750640" expanded="true" signature="850:1166" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,41 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(Rigidbody))]
 public class Decoration : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] List<GameObject> DecorationPrefabs;
-    [SerializeField] bool IsRightSide = false;
-    float sign = -1;
-    public float Speed = 30f;
-    public float DelayTime = 1f;
+    [SerializeField] List<GameObject> PrefabsList;
     [SerializeField] Vector2 PositionOfTrees = Vector3.zero;
-    border GBorder;
-    int counter = 0;
-    float defPosX = 0;
-    Vector3 defPos = Vector3.zero;
-    void Start()
+    public bool IsRightSide = false;
+    //distance between of to trees
+    [SerializeField] int TileLenght = 10;
+    //Z cordinate of tree location
+    [SerializeField] float spawnZ = -210;
+    //numbers of tree that can be exists in same time
+    [SerializeField] int TileCount = 50;
+    public Vector3 CurrentPos = Vector3.zero;
+    public float NewXPos = 0;
+    GameObject player;
+    Road road;
+    private void Awake()
     {
-        defPos = transform.position;
-        defPosX = defPos.x;
-        if (IsRightSide)
-            sign *= sign;
-        GBorder = FindObjectOfType<border>();
-        StartCoroutine(RespawnDelay());
+        
+        CurrentPos = transform.position;
+        NewXPos = CurrentPos.x;
+        tag = "Obs";
+        road = FindObjectOfType<Road>();
+        player = FindObjectOfType<Movement>().gameObject;
+        for (int i = 0; i < PrefabsList.Count; i++)
+        {
+            TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
+        }
     }
-    IEnumerator RespawnDelay()
+    private void Start()
     {
-        var temp = Random.Range(PositionOfTrees.x, PositionOfTrees.y);
-        counter = Random.Range(0, DecorationPrefabs.Count);
-        yield return new WaitForSeconds(DelayTime);
-        var x = Instantiate(DecorationPrefabs[counter]);
-        x.transform.parent = transform;
-        x.transform.position = new Vector3(sign * temp + defPosX , -0.5f, defPos.z);
-        x.gameObject.AddComponent<Obstucles>().Zspeed = Speed;
-        x.tag = "Obs";
-        x.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+    }
+    private void Update()
+    {
 
-        StartCoroutine(RespawnDelay());
+        if (CurrentPos.x != NewXPos)
+        {
+            var temp = CurrentPos;
+            temp.x = NewXPos;
+            CurrentPos = temp;
+        }
+        if (player.transform.position.z > (spawnZ - TileCount * TileLenght) || GetComponentsInChildren<Transform>().Length < TileCount)
+        {
+            TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
+        }
+    }
+    void TileRespawnHandle(GameObject obj)
+    {
+        GameObject tile;
+        tile = Instantiate(obj) as GameObject;
+        tile.tag = "Obs";
+        tile.AddComponent<Building>();
+        tile.transform.parent = transform;
+        tile.transform.position = Vector3.forward * spawnZ;
+        tile.transform.position = new Vector3(
+            CurrentPos.x + (Mathf.Sign(CurrentPos.x) * (Random.Range(PositionOfTrees.x, PositionOfTrees.y))),
+            CurrentPos.y, tile.transform.position.z);
+        spawnZ += tile.GetComponent<Collider>().bounds.size.z;
     }
 }
