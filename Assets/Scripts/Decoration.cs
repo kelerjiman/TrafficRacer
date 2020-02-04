@@ -19,12 +19,11 @@ public class Decoration : MonoBehaviour
     Road road;
     private void Awake()
     {
-        
+
         CurrentPos = transform.position;
         NewXPos = CurrentPos.x;
         tag = "Obs";
         road = FindObjectOfType<Road>();
-        player = FindObjectOfType<Movement>().gameObject;
         for (int i = 0; i < PrefabsList.Count; i++)
         {
             TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
@@ -32,10 +31,10 @@ public class Decoration : MonoBehaviour
     }
     private void Start()
     {
+        player = FindObjectOfType<Movement>().gameObject;
     }
     private void Update()
     {
-
         if (CurrentPos.x != NewXPos)
         {
             var temp = CurrentPos;

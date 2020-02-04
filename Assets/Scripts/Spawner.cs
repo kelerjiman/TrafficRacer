@@ -28,9 +28,13 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        m_Player = FindObjectOfType<Movement>();
         m_currentOBJ = PrefabList[UnityEngine.Random.Range(0, PrefabList.Count)];
         m_Timer = UnityEngine.Random.Range(Respawn_Dly.x, Respawn_Dly.y);
+    }
+    private void Start()
+    {
+        m_Player = FindObjectOfType<Movement>();
+
     }
     private void Update()
     {

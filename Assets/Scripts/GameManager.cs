@@ -11,13 +11,26 @@ public class GameManager : MonoBehaviour
     public bool GM_Is_Accident = false;
     /*به نحوه انتخاب وسیله فکر شود 
      قرار است که این گیم ابجکت در تمام بازی ست شود*/
+     [Header("Car prefabs")]
     public GameObject[] GM_Player;
-
+    public GameObject GM_Current_Prefab;
+    [Header("Bounces Prefabs")]
+    public GameObject[] GM_Bounces;
+    [Header ("Index Of car")]
+    public int GM_PlayerCarIndex = 0;
+    public Vector3 GM_DefPos = Vector3.zero;
     [SerializeField] float m_PGlobalSpeed = 5f;
     [SerializeField] int m_changeAmount = 0;
+
+    private void Awake()
+    {
+        //fu
+        Handle_ChangeCar();
+    }
     void Start()
     {
         GM = this;
+        
     }
     private void Update()
     {
@@ -34,4 +47,23 @@ public class GameManager : MonoBehaviour
 
         }
     }
+    public void Handle_ChangeCar()
+    {
+        var temp = FindObjectsOfType<Movement>();
+        if (temp.Length > 0)
+        {
+            foreach (var item in temp)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+        GM_Current_Prefab = Instantiate(GM_Player[GM_PlayerCarIndex]);
+        GM_Current_Prefab.transform.position = GM_DefPos;
+        GM_Current_Prefab.tag = "Player";
+        GM_Current_Prefab.layer = LayerMask.NameToLayer("Player");
+    }
+    //روی ساخت ماشین ها مختلف کار شود 
+    // player  گیم ابجکت های مختلف باید ست شود برای این کار باید
+    //GM_PlayerIndex
+    //از حالت اینتجر به گیم ابجکت تغییر کند
 }

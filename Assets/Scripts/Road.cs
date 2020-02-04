@@ -139,7 +139,6 @@ public class Road : MonoBehaviour
 
     private void Awake()
     {
-        Player = FindObjectOfType<Movement>();
         currentOBJ = Def_Tile;
         for (int i = 0; i < TileCount; i++)
         {
@@ -148,6 +147,7 @@ public class Road : MonoBehaviour
     }
     private void Start()
     {
+        Player = FindObjectOfType<Movement>();
 
     }
     private void FixedUpdate()

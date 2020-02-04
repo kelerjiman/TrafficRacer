@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour
     [SerializeField] VehichleProp VProps;//خصوصیات یک وسیله
     [SerializeField] float MainSpeed = 0;//سرعت اصلی بازی که از طرف هسته اصلی تنظیم می شود
     public float Z_Input = 0;//برای تشخیص گاز و ترمز استفاده می شود 
-    [SerializeField]
     public float X_Input = 0;// برای تشخیص حرکت به راست و چپ استفاده می شود
     Rigidbody rig;
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +23,10 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rig = GetComponent<Rigidbody>();
-        rig.mass = VProps.Get_Mass();
+        if (VProps != null)
+            rig.mass = VProps.Get_Mass();
+        else
+            rig.mass = 500;
     }
     private void Start()
     {

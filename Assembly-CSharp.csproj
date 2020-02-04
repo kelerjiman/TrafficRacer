@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Editor\SignBehaviorEditor.cs" />
     <Compile Include="Assets\Scripts\EncDecScale.cs" />
     <Compile Include="Assets\Scripts\EncDecSpeed.cs" />
+    <Compile Include="Assets\Scripts\Floor.cs" />
     <Compile Include="Assets\Scripts\ForTest.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InGameButtonManager.cs" />
