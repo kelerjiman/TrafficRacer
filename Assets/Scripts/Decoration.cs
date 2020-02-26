@@ -35,6 +35,8 @@ public class Decoration : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.GM.GM_Is_Accident)
+            return;
         if (CurrentPos.x != NewXPos)
         {
             var temp = CurrentPos;
@@ -51,7 +53,6 @@ public class Decoration : MonoBehaviour
         GameObject tile;
         tile = Instantiate(obj) as GameObject;
         tile.tag = "Obs";
-        tile.AddComponent<Building>();
         tile.transform.parent = transform;
         tile.transform.position = Vector3.forward * spawnZ;
         tile.transform.position = new Vector3(

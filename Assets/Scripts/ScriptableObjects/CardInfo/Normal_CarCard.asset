@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9b7f58f8b00254992c769c15a645a5, type: 3}
+  m_Name: Normal_CarCard
+  m_EditorClassIdentifier: 
+  CarIcon: {fileID: 21300000, guid: 5074cf653781d734f85ffa9fbcfc2617, type: 3}
+  CarName: NormalCar
+  Prefab: {fileID: 6977177901532478226, guid: 02fc0918d1221a640b2ba5a4042c060d, type: 3}
+  ProductCoinRate: 0.605
+  MultipleScoreRate: 0.854

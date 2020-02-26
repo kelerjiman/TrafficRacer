@@ -9,6 +9,8 @@ public class InGameButtonManager : MonoBehaviour
     [SerializeField] CanvasRenderer PausePanel;
     [SerializeField] CanvasRenderer LoosePanel;
     [SerializeField] CanvasRenderer WinPanel;
+    [SerializeField] string activeWindow;
+    [SerializeField] GameObject[] WindowList;
     [SerializeField]
     Movement player;
 
@@ -18,11 +20,8 @@ public class InGameButtonManager : MonoBehaviour
     }
     private void Update()
     {
-        if(!player)
+        if (!player)
             player = FindObjectOfType<Movement>();
-        if (GameManager.GM.GM_Is_Accident && !LoosePanel.gameObject.activeSelf)
-            LoosePanel.gameObject.SetActive(true);
-
     }
     //متد برای دکمه های یو آی
     public void Event_Dir_Down(int x)
@@ -42,21 +41,13 @@ public class InGameButtonManager : MonoBehaviour
         else
             player.Z_Input = 0;
     }
-    public void Pause_Button(Button button)
+    public void Pause_Button()
     {
-        if (GameManager.GM.GM_Is_Accident)
+        foreach (var win in WindowList)
         {
-            return;
-        }
-        if (Time.timeScale != 0)
-        {
-            Time.timeScale = 0;
-            PausePanel.gameObject.SetActive(true);
-        }
-        else
-        {
-            Time.timeScale = 1;
-            PausePanel.gameObject.SetActive(false);
+            if (win.activeSelf)
+                break;
+
         }
     }
     public void Exit_Button()
@@ -65,8 +56,30 @@ public class InGameButtonManager : MonoBehaviour
     }
     public void Reload_Button()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
         BackToDefault();
+    }
+    public void OnNext(GameObject NextWin)
+    {
+        Debug.Log("OnNext");
+        if (NextWin.name != activeWindow)
+            foreach (var win in WindowList)
+            {
+                if (win.name == NextWin.name)
+                    win.gameObject.SetActive(true);
+                else
+                    win.gameObject.SetActive(false);
+            }
+        activeWindow = NextWin.name;
+        //if (activeWindow == "RunTimeWindow")
+        //    SceneManager.LoadScene(1);
+        //if (activeWindow == "MainWindow")
+        //    SceneManager.LoadScene(0);
+    }
+    public void OnNextScene(int SIndex)
+    {
+        if (SceneManager.GetActiveScene().buildIndex != SIndex)
+            SceneManager.LoadScene(SIndex);
     }
     public void Main_Menu_Button()
     {

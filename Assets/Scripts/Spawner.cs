@@ -38,6 +38,8 @@ public class Spawner : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.GM.GM_Is_Accident)
+            return;
         m_NumberOfChildren = gameObject.GetComponentsInChildren<cars>().Length;
         if (m_NumberOfChildren < VehicleCount)
             Handle_RespawnTime();
