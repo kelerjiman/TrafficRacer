@@ -152,7 +152,7 @@ public class Road : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (GameManager.GM.GM_Is_Accident)
+        if (GameManager.Instance.GM_Is_Accident)
             return ;
         if (Player.transform.position.z > (SpawnZ - TileCount * refSize))
         {
