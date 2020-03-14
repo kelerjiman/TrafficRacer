@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SelectCarWindow : GenericWindow
 {
+    public PurchaseCarWindow pCarWindow;
     [SerializeField] GameObject CardButton;
     [SerializeField] GameObject ContentHolder;
     [SerializeField] SO_CarCard[] CarCards;
@@ -20,6 +21,7 @@ public class SelectCarWindow : GenericWindow
         {
             var x = Instantiate(CardButton);
             x.transform.parent = ContentHolder.transform;
+            x.GetComponent<CardButton>().PCarWindow = pCarWindow;
             x.GetComponent<CardButton>().SetInfo(item);
         }
     }
