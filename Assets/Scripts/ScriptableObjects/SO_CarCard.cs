@@ -11,6 +11,7 @@ public class SO_CarCard : ScriptableObject
     [SerializeField] float ProductCoinRate = 1;
     [Range(0,1)]
     [SerializeField] float MultipleScoreRate = 1;
+    [SerializeField] int Price = 0;
     public Sprite GetCarIcon()
     {
 
@@ -31,5 +32,9 @@ public class SO_CarCard : ScriptableObject
     public GameObject GetPrefab()
     {
         return Prefab;
+    }
+    public int GetPrice()
+    {
+        return Price;
     }
 }
