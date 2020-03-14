@@ -30,7 +30,7 @@ public class SignBehavior : MonoBehaviour
     public List<string> messages;
     private void Start()
     {
-        GlobalSpeed = GameManager.GM.GM_MainSpeed;
+        GlobalSpeed = GameManager.Instance.GM_MainSpeed;
         ReloadInfo();
     }
     private void Update()
