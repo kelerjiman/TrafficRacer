@@ -69,4 +69,11 @@ public class VehichleProp : ScriptableObject
     {
         return Force_Resistance;
     }
+    [SerializeField]
+    [Range(0, 5)]
+    int Health = 3;
+    public int Get_Health()
+    {
+        return Health;
+    }
 }
