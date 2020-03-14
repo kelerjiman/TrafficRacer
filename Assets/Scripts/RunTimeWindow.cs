@@ -17,6 +17,7 @@ public class RunTimeWindow : GenericWindow
     [SerializeField] Text T_CurrentSpeed;
     [SerializeField] Text T_Messions;
 
+    [SerializeField] Movement player;
     private float m_inGamecash;
     private float m_time;
     private float m_mainSpeed;
@@ -31,10 +32,14 @@ public class RunTimeWindow : GenericWindow
         Score_InGame = FindObjectOfType<InGameCash>();
         CloseButton.gameObject.SetActive(false);
         base.Start();
+        player = FindObjectOfType<Movement>();
     }
     public override void Update()
     {
+        PauseButton.gameObject.SetActive(true);
+        Time.timeScale = 1;
         OnAccident();
+        base.Update();
         if (this.gameObject.activeSelf == true && player != null)
         {
             CloseButton.gameObject.SetActive(false);
@@ -43,14 +48,12 @@ public class RunTimeWindow : GenericWindow
             Handle_Time();
             Handle_InGameCash();
         }
-        base.Update();
     }
 
 
     void Handle_MainSpeed()
     {
-
-        T_MainSpeed.text = (GameManager.GM.GM_MainSpeed * 2).ToString();
+        T_MainSpeed.text = (GameManager.Instance.GM_MainSpeed * 2).ToString();
     }
     void Handle_CurrentSpeed()
     {
@@ -60,16 +63,16 @@ public class RunTimeWindow : GenericWindow
     }
     void Handle_Time()
     {
-        T_Time.text = Mathf.Round(Score_InGame.Timer).ToString();
+        //T_Time.text = Mathf.Round(Score_InGame.Timer).ToString();
     }
     void Handle_InGameCash()
     {
         //m_inGamecash = Score_InGame.Score_InGame;
-        T_InGameCash.text = Score_InGame.Score_InGame.ToString();
+        //T_InGameCash.text = Score_InGame.Score_InGame.ToString();
     }
     public override void OnAccident()
     {
-        if (GameManager.GM.GM_Is_Accident)
+        if (GameManager.Instance.GM_Is_Accident)
         {
             loosePanel.SetActive(true);
             this.gameObject.SetActive(false);
