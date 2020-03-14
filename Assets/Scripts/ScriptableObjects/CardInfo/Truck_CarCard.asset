@@ -17,3 +17,4 @@ MonoBehaviour:
   Prefab: {fileID: 949506615150398908, guid: 54f2339784d45214ab4d7e455381b6d7, type: 3}
   ProductCoinRate: 0.707
   MultipleScoreRate: 0.526
+  Price: 8500
