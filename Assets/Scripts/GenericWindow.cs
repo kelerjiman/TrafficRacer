@@ -5,16 +5,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GenericWindow : MonoBehaviour
+public class GenericWindow : MonoBehaviour,IWindowGeneric
 {
-
-    public Movement player;
+    public Text Coins;
     public Button CloseButton;
     public Button PauseButton;
     public GameObject PreviousWindow;
     public virtual void Start()
     {
-        player = FindObjectOfType<Movement>();
+        PauseButton.gameObject.SetActive(false);
         Button CloseBtn = CloseButton.GetComponent<Button>();
         Button PauseBtn = PauseButton.GetComponent<Button>();
         CloseBtn.onClick.AddListener(OnCloseButton);
@@ -26,33 +25,40 @@ public class GenericWindow : MonoBehaviour
     }
     public virtual void OnAccident()
     {
-        if (GameManager.GM.GM_Is_Accident)
+        if (GameManager.Instance.GM_Is_Accident)
         {
             Debug.Log("onACCIDENT");
         }
     }
     public virtual void OnCloseButton()
     {
-        Debug.Log("OnClose Button");
         PreviousWindow.SetActive(true);
+        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
         gameObject.SetActive(false);
-
     }
     public virtual void OnPauseButton()
     {
         Debug.Log("On Pause Button");
+        Time.timeScale = 0;
         PreviousWindow.SetActive(true);
         gameObject.SetActive(false);
     }
     public virtual void OnNext(GameObject NextWin)
     {
         NextWin.gameObject.SetActive(true);
+        NextWin.GetComponent<IWindowGeneric>().reloadSetting();
         this.gameObject.SetActive(false);
     }
     public virtual void OnNextScene(int SIndex)
     {
-            SceneManager.LoadScene(SIndex);
+        SceneManager.LoadScene(SIndex);
+    }
+    public void reloadSetting()
+    {
+        Button CloseBtn = CloseButton.GetComponent<Button>();
+        Button PauseBtn = PauseButton.GetComponent<Button>();
+        CloseBtn.onClick.AddListener(OnCloseButton);
+        PauseBtn.onClick.AddListener(OnPauseButton);
     }
     //listener 
-
 }
