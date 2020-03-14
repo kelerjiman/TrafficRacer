@@ -10,7 +10,6 @@ public class RotationHandle : MonoBehaviour
         , maxAngle, minAngle;
     [SerializeField]
     float H_R_Speed = 0;
-    NormCars NormalCars;
     cars InverseCar;
     border GBorder;
     Quaternion DefRot, NewRot;
