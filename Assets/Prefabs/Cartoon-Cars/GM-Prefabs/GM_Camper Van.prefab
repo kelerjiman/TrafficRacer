@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 4329628036595830204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.935, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 6, z: 8}
+  m_LocalScale: {x: 6, y: 5, z: 5}
   m_Children:
   - {fileID: 8227644542669016609}
   - {fileID: 5167603198755430229}
@@ -252,10 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62733024ede1a4d49900c4eb6551b3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: {x: 0, y: 0, z: 0}
   VProps: {fileID: 11400000, guid: 4580c88061d900941a65af49001902ca, type: 2}
   MainSpeed: 0
   Z_Input: 0
   X_Input: 0
+  health: 1
 --- !u!114 &2620035974822178449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,9 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fd46b207f27024e89054fbd006dad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score_InGame: 0
-  Score_For_Speed: 6
-  Timer: 0
 --- !u!1 &4986300437061040189
 GameObject:
   m_ObjectHideFlags: 0
