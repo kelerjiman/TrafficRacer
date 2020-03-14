@@ -48,7 +48,7 @@ public class BuildingSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.GM.GM_Is_Accident)
+        if (GameManager.Instance.GM_Is_Accident)
             return;
         if (Player.transform.position.z > (SpawnZ - TileCount * refSize))
         {

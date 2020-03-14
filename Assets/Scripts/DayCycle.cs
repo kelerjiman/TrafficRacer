@@ -22,12 +22,11 @@ public class DayCycle : MonoBehaviour
         //else
         //    MinMaxAngle = Random.Range(180f, 360f);
         transform.rotation = Quaternion.Euler(MinMaxAngle, DefRotation.y, DefRotation.z);
-
+        StartCoroutine(Day_Cycle());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator Day_Cycle()
     {
+        yield return new WaitForSeconds(5);
         DayNightFunc();
         NightBehavior();
     }

@@ -2,24 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
-public class cars : MonoBehaviour
+public class cars : MonoBehaviour, IPooler
 {
-    public float MainSpeed = 8;
+    public float MainSpeed = 2;
+
+    [Header("Animation Attributes")]
+    [SerializeField]
+    GameObject model;
     Rigidbody rig;
-    private float m_MainSpeed = 0;
-    private Vector2 m_speed_range = new Vector2(0, 5);
+    //defualt Attributes
+    BoxCollider m_collider;
+    float m_defRot;
+    Vector3 m_defPos;
+    bool m_accident, stop = false;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("accident was accured");
+            model.transform.rotation = Quaternion.Euler(0, 15 + m_defRot, 0);
+            m_accident = true;
+        }
+    }
+    private void Awake()
+    {
+        rig = GetComponent<Rigidbody>();
+    }
     private void Start()
     {
-        m_MainSpeed = Mathf.Sign(MainSpeed) * Random.Range(m_speed_range.x, m_speed_range.y) + MainSpeed;
-        rig = GetComponent<Rigidbody>();
+        m_defPos = transform.position;
+        m_defRot = model.transform.rotation.eulerAngles.y;
+        m_collider = GetComponent<BoxCollider>();
+        MainSpeed = GameManager.Instance.GM_MainSpeed;
     }
     private void Update()
     {
-        MoveHandle();
+        if (!m_accident)
+            Movement();
+        else
+        {
+            if (!stop)
+                OnAccident();
+        }
     }
-    void MoveHandle()
+    void Movement()
     {
-        rig.velocity = Vector3.forward * m_MainSpeed;
+        transform.Translate(Vector3.forward * MainSpeed * Time.deltaTime);
+    }
+    void OnAccident()
+    {
+        rig.isKinematic = true;
+        m_collider.enabled = false;
+        stop = true;
+    }
+    public void setDefault()
+    {
+        rig.isKinematic = false;
+        model.transform.rotation = Quaternion.Euler(0, m_defRot, 0);
+        transform.position = m_defPos;
+        if (m_collider != null && !m_collider.enabled)
+            m_collider.enabled = true;
+        stop = false;
+        m_accident = false;
     }
 }
 #region OldCode

@@ -19,12 +19,12 @@ public class ConstantBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.GM.GM_Is_Accident)
+        if (!GameManager.Instance.GM_Is_Accident)
             transform.position =
                 new Vector3(0, 0, defPos.z + player.transform.position.z);
         else
         {
-            transform.position += Vector3.forward * Time.deltaTime * GameManager.GM.GM_MainSpeed;
+            transform.position += Vector3.forward * Time.deltaTime * GameManager.Instance.GM_MainSpeed;
 
         }
     }

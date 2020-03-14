@@ -5,7 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Car_Collision : MonoBehaviour
 {
-    public float XPos = 0;
+    Rigidbody rig;
+    private void Start()
+    {
+        rig = GetComponent<Rigidbody>();
+    }
+    
+    #region old code
+    /*
+     public float XPos = 0;
     public float speed = 5;
     public Vector3 CurrentPosition = Vector3.zero;
     public bool Have_Permission_Change = true;//shoud be false--- for test must be true!!!
@@ -19,7 +27,7 @@ public class Car_Collision : MonoBehaviour
     private void Start()
     {
         speed = 2;
-        XPos = GetComponentInParent<Spawner>().ChangeLine_Xpos;
+        //XPos = GetComponentInParent<Spawner>().ChangeLine_Xpos;
         CurrentPosition = transform.position;
     }
     private void Update()
@@ -32,4 +40,6 @@ public class Car_Collision : MonoBehaviour
         CurrentPosition.x += XPos;
         Have_Permission_Change = false;
     }
+     */
+    #endregion
 }

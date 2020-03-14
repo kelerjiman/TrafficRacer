@@ -16,14 +16,12 @@ public class Decoration : MonoBehaviour
     public Vector3 CurrentPos = Vector3.zero;
     public float NewXPos = 0;
     GameObject player;
-    Road road;
     private void Awake()
     {
 
         CurrentPos = transform.position;
         NewXPos = CurrentPos.x;
         tag = "Obs";
-        road = FindObjectOfType<Road>();
         for (int i = 0; i < PrefabsList.Count; i++)
         {
             TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
@@ -35,7 +33,7 @@ public class Decoration : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.GM.GM_Is_Accident)
+        if (GameManager.Instance.GM_Is_Accident)
             return;
         if (CurrentPos.x != NewXPos)
         {
