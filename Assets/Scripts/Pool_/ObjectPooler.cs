@@ -4,35 +4,44 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public string tagOfPrefabs;
-    public List<GameObject> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-    public static ObjectPooler Instance;
+    [System.Serializable]
+    public class Pool
+    {
+        public string tag;
+        public GameObject[] prefabs;
+    }
+    public Pool[] Pools;
+    public Dictionary<string, Queue<GameObject>> poolDic;
     private void Start()
     {
-        Instance = this;
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        Queue<GameObject> objectPool = new Queue<GameObject>();
-        foreach (var pool in pools)
+        poolDic = new Dictionary<string, Queue<GameObject>>();
+        foreach (var pool in Pools)
         {
-            var obj = Instantiate(pool);
-            obj.SetActive(false);
-            objectPool.Enqueue(obj);
+            Queue<GameObject> ObjPoolList = new Queue<GameObject>();
+            foreach (var prefab in pool.prefabs)
+            {
+                GameObject obj = Instantiate(prefab);
+                obj.SetActive(false);
+                ObjPoolList.Enqueue(obj);
+            }
+            poolDic.Add(pool.tag, ObjPoolList);
         }
-        poolDictionary.Add(tagOfPrefabs, objectPool);
     }
-    public GameObject SpawnFromPool(Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(string _tag, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tagOfPrefabs))
+        if (!poolDic.ContainsKey(_tag))
         {
             Debug.LogWarning("is empty");
             return null;
         }
-        GameObject objectToSpawn = poolDictionary[tagOfPrefabs].Dequeue();
+        GameObject objectToSpawn = poolDic[_tag].Dequeue();
         objectToSpawn.SetActive(true);
+        IPooler I_ObjectToSpawn = objectToSpawn.GetComponent<IPooler>();
+        if (I_ObjectToSpawn != null)
+            I_ObjectToSpawn.setDefault();
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
-        poolDictionary[tagOfPrefabs].Enqueue(objectToSpawn);
+        poolDic[_tag].Enqueue(objectToSpawn);
         return objectToSpawn;
     }
 
