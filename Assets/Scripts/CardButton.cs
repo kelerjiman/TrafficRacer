@@ -47,6 +47,7 @@ public class CardButton : MonoBehaviour
             return;
         }
         GameManager.Instance.GM_Current_Prefab = Prefab;
+        PlayerPrefsScript.setCurrentCar(Prefab.name);
         m_btnParent.OnCloseButton();
     }
     public void loadData()
