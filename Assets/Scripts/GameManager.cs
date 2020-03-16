@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Debug.Log(PlayerPrefsScript.getTotalCoin());
+        Handle_ChangeCar();
     }
     private void Update()
     {
@@ -58,8 +59,16 @@ public class GameManager : MonoBehaviour
     }
     public void Handle_ChangeCar()
     {
+        Debug.Log(PlayerPrefsScript.getCurrentCar());
         if (Instance.GM_Current_Prefab == null)
+        {
+            foreach (var car in GM_Player)
+            {
+                if (car.name == PlayerPrefsScript.getCurrentCar())
+                    GM_Current_Prefab = car;
+            }
             return;
+        }
         var temp = FindObjectsOfType<Movement>();
         if (temp.Length > 0)
         {
@@ -86,77 +95,81 @@ public class GameManager : MonoBehaviour
         }
         return condition;
     }
+    public void RestorePurchasing()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
 
-        //روی ساخت ماشین ها مختلف کار شود 
-        // player  گیم ابجکت های مختلف باید ست شود برای این کار باید
-        //GM_PlayerIndex
-        //از حالت اینتجر به گیم ابجکت تغییر کند
-        #region Old_Code
-        /*
-         public static GameManager GM;
-        //In game UI elements
-        public int GM_In_gamecash = 0;
-        public float GM_MainSpeed = 5f;
-        public bool GM_Is_Accident = false;
+//روی ساخت ماشین ها مختلف کار شود 
+// player  گیم ابجکت های مختلف باید ست شود برای این کار باید
+//GM_PlayerIndex
+//از حالت اینتجر به گیم ابجکت تغییر کند
+#region Old_Code
+/*
+ public static GameManager GM;
+//In game UI elements
+public int GM_In_gamecash = 0;
+public float GM_MainSpeed = 5f;
+public bool GM_Is_Accident = false;
 
-        به نحوه انتخاب وسیله فکر شود 
-         قرار است که این گیم ابجکت در تمام بازی ست شود
-         ///////////////////////////////////////////////////////////////////////////////////////
+به نحوه انتخاب وسیله فکر شود 
+ قرار است که این گیم ابجکت در تمام بازی ست شود
+ ///////////////////////////////////////////////////////////////////////////////////////
 
-        [Header("Car prefabs")]
-        public GameObject[] GM_Player;
-        public GameObject GM_Current_Prefab;
-        [Header("Bounces Prefabs")]
-        public GameObject[] GM_Bounces;
-        [Header("Index Of car")]
-        public int GM_PlayerCarIndex = 0;
-        public Vector3 GM_DefPos = Vector3.zero;
-        [SerializeField] float m_PGlobalSpeed = 5f;
-        [SerializeField] int m_changeAmount = 0;
+[Header("Car prefabs")]
+public GameObject[] GM_Player;
+public GameObject GM_Current_Prefab;
+[Header("Bounces Prefabs")]
+public GameObject[] GM_Bounces;
+[Header("Index Of car")]
+public int GM_PlayerCarIndex = 0;
+public Vector3 GM_DefPos = Vector3.zero;
+[SerializeField] float m_PGlobalSpeed = 5f;
+[SerializeField] int m_changeAmount = 0;
 
-        private void Awake()
+private void Awake()
+{
+    if (SceneManager.GetActiveScene().buildIndex != 0)
+    {
+        Handle_ChangeCar();
+    }
+}
+void Start()
+{
+    GM = this;
+
+}
+private void Update()
+{
+    GM_Is_Accident = false;
+    //todo bayad pak shavad
+    if (SceneManager.GetActiveScene().buildIndex == 0)
+        return;
+    GM_MainSpeed = m_PGlobalSpeed;
+}
+void Handle_Accident()
+{
+    if (GM_Is_Accident)
+    {
+
+    }
+}
+public void Handle_ChangeCar()
+{
+    var temp = FindObjectsOfType<Movement>();
+    if (GM.GM_Current_Prefab == null)
+        return;
+    if (temp.Length > 0)
+    {
+        foreach (var item in temp)
         {
-            if (SceneManager.GetActiveScene().buildIndex != 0)
-            {
-                Handle_ChangeCar();
-            }
+            Destroy(item.gameObject);
         }
-        void Start()
-        {
-            GM = this;
-
-        }
-        private void Update()
-        {
-            GM_Is_Accident = false;
-            //todo bayad pak shavad
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-                return;
-            GM_MainSpeed = m_PGlobalSpeed;
-        }
-        void Handle_Accident()
-        {
-            if (GM_Is_Accident)
-            {
-
-            }
-        }
-        public void Handle_ChangeCar()
-        {
-            var temp = FindObjectsOfType<Movement>();
-            if (GM.GM_Current_Prefab == null)
-                return;
-            if (temp.Length > 0)
-            {
-                foreach (var item in temp)
-                {
-                    Destroy(item.gameObject);
-                }
-            }
-            GM_Current_Prefab = Instantiate(GameManager.GM.GM_Current_Prefab);
-            GM_Current_Prefab.transform.position = GM_DefPos;
-            GM_Current_Prefab.tag = "Player";
-            GM_Current_Prefab.layer = LayerMask.NameToLayer("Player");
-            */
-        #endregion
+    }
+    GM_Current_Prefab = Instantiate(GameManager.GM.GM_Current_Prefab);
+    GM_Current_Prefab.transform.position = GM_DefPos;
+    GM_Current_Prefab.tag = "Player";
+    GM_Current_Prefab.layer = LayerMask.NameToLayer("Player");
+    */
+#endregion
