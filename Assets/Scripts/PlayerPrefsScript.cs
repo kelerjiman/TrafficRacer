@@ -9,7 +9,15 @@ public class PlayerPrefsScript : MonoBehaviour
     const string SCORE = "score_";
     const string MUTE = "mute";
     const string KIND_OF_CONTROL = "kind_of_control";
-
+    const string Current_Car = "CurrentCar";
+    public static void setCurrentCar(string param)
+    {
+        PlayerPrefs.SetString(Current_Car, param);
+    }
+    public static string getCurrentCar()
+    {
+       return PlayerPrefs.GetString(Current_Car);
+    }
     public static void setTotalCoin(int coins)
     {
         PlayerPrefs.SetInt(TOTAL_COINS, coins);
