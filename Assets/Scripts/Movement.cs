@@ -7,7 +7,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] Vector3 force;
-    [SerializeField] VehichleProp VProps;//خصوصیات یک وسیله
+    public VehichleProp VProps;//خصوصیات یک وسیله
     [SerializeField] float MainSpeed = 0;//سرعت اصلی بازی که از طرف هسته اصلی تنظیم می شود
     public float Z_Input = 0;//برای تشخیص گاز و ترمز استفاده می شود 
     public float X_Input = 0;// برای تشخیص حرکت به راست و چپ استفاده می شود
@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     [Header("health section")]
     [Range(0, 5)]
     public int health = 1;
+
+    public AudioSource source;
     public void DamageCal(int damage)
     {
         health -= damage;
@@ -24,8 +26,8 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.CompareTag("Cars"))
         {
             health--;
-            //if (health <= 0)
-            //    GameManager.Instance.GM_Is_Accident = true;
+            if (health <= 0)
+                GameManager.Instance.GM_Is_Accident = true;
         }
     }
     private void Awake()
@@ -41,12 +43,19 @@ public class Movement : MonoBehaviour
     }
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+        AudioManager.Instance.SetData(ref source, GameManager.Instance.GM_Current_Prefab.name);
+        source.Play();
         Speed_Norm();
     }
     private void Update()
     {
         if (GameManager.Instance.GM_Is_Accident)
+        {
+            source.pitch = 0;
             return;
+        }
+        source.pitch = (rig.velocity.z * 2) / (GameManager.Instance.GM_MainSpeed * 2);
         MainSpeed = GameManager.Instance.GM_MainSpeed;
         Handle_Speed();
         Handle_X_Move();
@@ -88,16 +97,26 @@ public class Movement : MonoBehaviour
     //متد تنظیم کننده فرایند گاز دادن
     public void Speed_Enc()
     {
-        if (rig.velocity.z < GameManager.Instance.GM_MainSpeed * 2)
-            rig.velocity += Vector3.forward * VProps.Get_Nitro() * Time.deltaTime;
+        if (rig.velocity.z >= GameManager.Instance.GM_MainSpeed * 2)
+            return;
+        Vector3 temp = Vector3.forward * GameManager.Instance.GM_MainSpeed * 2;
+        rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Nitro() * Time.deltaTime);
+        Debug.Log("================================================================================");
+        Debug.Log("=                                                                              =");
+        Debug.Log("=                                                                              =");
+        Debug.Log("            temp is : " + temp);
+        Debug.Log("=           rig.velocity : " + rig.velocity);
+        Debug.Log("=                                                                              =");
+        Debug.Log("================================================================================");
+
     }
     //متد تنظیم کننده فرایند ترمز کردن
     public void Speed_Dec()
     {
         /*حداقل و حداکثر سرعت را مشخص و با ترمز و گاز بین این دو تغییر ایجاد کند.*/
         Vector3 temp = Vector3.forward * GameManager.Instance.GM_MainSpeed;
-
-        rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Breaking()/* * Time.deltaTime*/);
+        rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Breaking() * Time.deltaTime);
+        //source.pitch = (rig.velocity.z * 2) / temp.z;
     }
     //متد تنظیم کننده انیمیشن برای فرایند ترمز و گاز
     void Handle_Speed_Anim()

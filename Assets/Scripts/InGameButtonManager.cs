@@ -85,6 +85,10 @@ public class InGameButtonManager : MonoBehaviour
     {
 
     }
+    public void Sound_Pitch(int x)
+    {
+        Debug.Log("player.source.pitch");
+    }
     private void BackToDefault()
     {
         LoosePanel.gameObject.SetActive(false);

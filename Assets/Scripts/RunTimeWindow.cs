@@ -84,6 +84,12 @@ public class RunTimeWindow : GenericWindow
     {
         gameObject.SetActive(false);
         PreviousWindow.SetActive(true);
+        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
         base.OnPauseButton();
+    }
+    public override void reloadSetting()
+    {
+        base.reloadSetting();
+        player.gameObject.SetActive(true);
     }
 }

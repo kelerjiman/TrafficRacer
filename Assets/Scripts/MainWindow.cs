@@ -15,6 +15,8 @@ public class MainWindow : GenericWindow
     }
     public override void OnCloseButton()
     {
-        Application.Quit();
+        //روی مشکل دکمه خروج کار شود 
+        // در تمام پنجره ها وقتی دکمه خروج زده می شود برنامه بسته می شود.
+        Debug.Log("main menu");
     }
 }

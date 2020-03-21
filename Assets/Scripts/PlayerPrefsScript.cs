@@ -9,14 +9,35 @@ public class PlayerPrefsScript : MonoBehaviour
     const string SCORE = "score_";
     const string MUTE = "mute";
     const string KIND_OF_CONTROL = "kind_of_control";
-    const string Current_Car = "CurrentCar";
+    const string CURRENT_CAR = "CurrentCar";
+    const string SFX_VOLUME = "sfx_volume";
+    const string SFX_MUTE = "sfx_mute";
+    public static void setSfxVolume(float sfx)
+    {
+        PlayerPrefs.SetFloat(SFX_VOLUME, sfx);
+    }
+    public static float getSfxVolume()
+    {
+        return PlayerPrefs.GetFloat(SFX_VOLUME);
+    }
+    public static void setSfxMute(bool mute)
+    {
+        int x = (mute) ? 1 : 0;
+        PlayerPrefs.SetInt(SFX_MUTE, x);
+    }
+    public static bool getSfxMute()
+    {
+        int x = PlayerPrefs.GetInt(SFX_MUTE);
+        bool y = (x == 1) ? true : false;
+        return y;
+    }
     public static void setCurrentCar(string param)
     {
-        PlayerPrefs.SetString(Current_Car, param);
+        PlayerPrefs.SetString(CURRENT_CAR, param);
     }
     public static string getCurrentCar()
     {
-       return PlayerPrefs.GetString(Current_Car);
+        return PlayerPrefs.GetString(CURRENT_CAR);
     }
     public static void setTotalCoin(int coins)
     {
@@ -43,10 +64,7 @@ public class PlayerPrefsScript : MonoBehaviour
     }
     public static void setMutevolume(bool mute)
     {
-        if (mute)
-            PlayerPrefs.SetInt(MUTE, 0);
-        else
-            PlayerPrefs.SetInt(MUTE, 1);
+        int x = (mute) ? 1 : 0;
     }
     public static void setKindOfControl(int Index)
     {
@@ -66,11 +84,9 @@ public class PlayerPrefsScript : MonoBehaviour
     }
     public static bool getMutevolume()
     {
-
-        if (PlayerPrefs.GetInt(MUTE) > 0)
-            return false;
-        else
-            return true;
+        int x = PlayerPrefs.GetInt(MUTE);
+        bool y = (x == 1) ? true : false;
+        return y;
     }
     public static int getKindOfControl()
     {
