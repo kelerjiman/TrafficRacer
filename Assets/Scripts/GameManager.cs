@@ -8,7 +8,73 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    class SetDefaultCar
+    {
+        public string DefaultCarName(CarNames _CarNames_Enum)
+        {
+            var temp = string.Empty;
+            switch (_CarNames_Enum)
+            {
+                case CarNames.Ambulance:
+                    temp = "Ambulance";
+                    break;
+                case CarNames.NormalCar:
+                    temp = "Normal";
+                    break;
+                case CarNames.Jeep:
+                    temp = "Jeep";
+                    break;
+                case CarNames.Bus:
+                    temp = "Bus";
+                    break;
+                case CarNames.Van:
+                    temp = "Van";
+                    break;
+                case CarNames.SuperCar:
+                    temp = "Super";
+                    break;
+                case CarNames.Police:
+                    temp = "Police";
+                    break;
+                case CarNames.Taxi:
+                    temp = "Taxi";
+                    break;
+                case CarNames.Camper:
+                    temp = "CamperVan";
+                    break;
+                case CarNames.Construct:
+                    temp = "ConstructionTruck";
+                    break;
+                case CarNames.Water:
+                    temp = "Water";
+                    break;
+                case CarNames.Crane:
+                    temp = "Crane";
+                    break;
+                default:
+                    break;
+            }
+            return temp;
+        }
+    }
+    enum CarNames
+    {
+        NormalCar,
+        Jeep,
+        Bus,
+        Van,
+        SuperCar,
+        Police,
+        Taxi,
+        Camper,
+        Construct,
+        Water,
+        Crane,
+        Ambulance
+    }
     public static GameManager Instance;
+    [SerializeField] CarNames DefaultCarNames;
+    string FirstCar;
     //In game UI elements
     public int GM_In_gamecash = 0;
     public int GM_Total_Coins = 3000;//باید مقدار صفر شود
@@ -38,6 +104,14 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        //RestorePurchasing();
+        //var temp = FindObjectsOfType<GameManager>();
+        //if (temp.Length > 0)
+        //    foreach (var item in temp)
+        //    {
+        //        Destroy(item);
+        //    }
+        //DontDestroyOnLoad(gameObject);
         Instance = this;
         Debug.Log(PlayerPrefsScript.getTotalCoin());
         Handle_ChangeCar();
@@ -59,13 +133,45 @@ public class GameManager : MonoBehaviour
     }
     public void Handle_ChangeCar()
     {
-        Debug.Log(PlayerPrefsScript.getCurrentCar());
         if (Instance.GM_Current_Prefab == null)
         {
-            foreach (var car in GM_Player)
+            string TempName = PlayerPrefsScript.getCurrentCar();
+            Debug.Log("Current Car is :" + TempName);
+            if (TempName != string.Empty)
             {
-                if (car.name == PlayerPrefsScript.getCurrentCar())
-                    GM_Current_Prefab = car;
+                foreach (var car in GM_Player)
+                {
+                    if (car.name == PlayerPrefsScript.getCurrentCar())
+                        GM_Current_Prefab = car;
+                }
+            }
+            else
+            {
+                Debug.Log("tempName is : Empty");
+                SetDefaultCar SDC = new SetDefaultCar();
+                FirstCar = SDC.DefaultCarName(DefaultCarNames);
+                Debug.Log("tempName is : " + FirstCar);
+                CardButton CB = new CardButton();
+                CB.load_OR_open(FirstCar);
+                Debug.Log("-------------------------------------------------" +
+                    "in foreach" +
+                    "----------------------------------------------------");
+                foreach (var car in GM_Player)
+                {
+                    Debug.Log("Name of Car in GM_Player is " + car.name);
+                    Debug.Log("and First Car is : " + FirstCar);
+                    Debug.Log("----------------------------------------------------");
+
+                    if (car.name == FirstCar)
+                    {
+                        GM_Current_Prefab = car;
+                        Debug.Log("GM Current Prefab Name is :" + car.name);
+                    }
+                }
+
+                Debug.Log("-------------------------------------------------" +
+                    "End foreach" +
+                    "----------------------------------------------------");
             }
             return;
         }
