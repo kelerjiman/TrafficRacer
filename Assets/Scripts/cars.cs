@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody),typeof(AudioSource))]
 public class cars : MonoBehaviour, IPooler
 {
     public float MainSpeed = 2;
@@ -34,6 +34,7 @@ public class cars : MonoBehaviour, IPooler
         m_defRot = model.transform.rotation.eulerAngles.y;
         m_collider = GetComponent<BoxCollider>();
         MainSpeed = GameManager.Instance.GM_MainSpeed;
+
     }
     private void Update()
     {
@@ -65,6 +66,7 @@ public class cars : MonoBehaviour, IPooler
         stop = false;
         m_accident = false;
     }
+    
 }
 #region OldCode
 
