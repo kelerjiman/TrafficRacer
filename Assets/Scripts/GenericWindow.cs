@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GenericWindow : MonoBehaviour,IWindowGeneric
+public class GenericWindow : MonoBehaviour, IWindowGeneric
 {
     public Text Coins;
     public Button CloseButton;
@@ -16,8 +16,11 @@ public class GenericWindow : MonoBehaviour,IWindowGeneric
         PauseButton.gameObject.SetActive(false);
         Button CloseBtn = CloseButton.GetComponent<Button>();
         Button PauseBtn = PauseButton.GetComponent<Button>();
-        CloseBtn.onClick.AddListener(OnCloseButton);
-        PauseBtn.onClick.AddListener(OnPauseButton);
+        //CloseBtn.onClick.AddListener(OnCloseButton);
+        CloseBtn.onClick.RemoveAllListeners();
+        PauseBtn.onClick.RemoveAllListeners();
+        CloseBtn.onClick.AddListener(() => OnCloseButton());
+        PauseBtn.onClick.AddListener(() => OnPauseButton());
     }
     public virtual void Update()
     {
@@ -33,8 +36,8 @@ public class GenericWindow : MonoBehaviour,IWindowGeneric
     public virtual void OnCloseButton()
     {
         PreviousWindow.SetActive(true);
-        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
         gameObject.SetActive(false);
+        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
     }
     public virtual void OnPauseButton()
     {
@@ -53,12 +56,14 @@ public class GenericWindow : MonoBehaviour,IWindowGeneric
     {
         SceneManager.LoadScene(SIndex);
     }
-    public void reloadSetting()
+    public virtual void reloadSetting()
     {
         Button CloseBtn = CloseButton.GetComponent<Button>();
         Button PauseBtn = PauseButton.GetComponent<Button>();
-        CloseBtn.onClick.AddListener(OnCloseButton);
-        PauseBtn.onClick.AddListener(OnPauseButton);
+        //CloseBtn.onClick.AddListener(OnCloseButton);
+        //PauseBtn.onClick.AddListener(OnPauseButton);
+        CloseBtn.onClick.AddListener(() => OnCloseButton());
+        PauseBtn.onClick.AddListener(() => OnPauseButton());
     }
     //listener 
 }
