@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+[RequireComponent(typeof(AudioSource))]
 public class CardButton : MonoBehaviour
 {
     public Image LockImage;
@@ -15,17 +15,23 @@ public class CardButton : MonoBehaviour
     public GameObject Prefab;
     public int price = 0;
     private Button m_btn;
+    private AudioSource source;
     [SerializeField] private SelectCarWindow m_btnParent;
     public PurchaseCarWindow PCarWindow;
 
     private void Start()
     {
-        loadData();
+        source = GetComponent<AudioSource>();
+        load_OR_open();
         m_btnParent = FindObjectOfType<SelectCarWindow>();
         transform.localScale = new Vector3(1, 1, 1);
         m_btn = this.GetComponent<Button>();
         m_btn.onClick.AddListener(OnClickEvent);
 
+    }
+    private void OnEnable()
+    {
+        load_OR_open();
     }
 
     public void SetInfo(SO_CarCard item)
@@ -50,21 +56,35 @@ public class CardButton : MonoBehaviour
         PlayerPrefsScript.setCurrentCar(Prefab.name);
         m_btnParent.OnCloseButton();
     }
-    public void loadData()
+    public void load_OR_open(string _CarName = null)
     {
-        if (PlayerPrefs.HasKey(CarName))
+        //Debug.Log("Load_OR_open Method");
+        if (_CarName == null)
         {
-            int param = PlayerPrefsScript.getCarUnlock(CarName);
-            Is_Locked = (param == 1) ? false : true;
+            //Debug.Log("CarName is :" + CarName);
+            if (PlayerPrefs.HasKey(CarName))
+            {
+                //Debug.Log("PlayerPrefs.HasKey(CarName) is :"+ PlayerPrefs.HasKey(CarName));
+                int param = PlayerPrefsScript.getCarUnlock(CarName);
+                //Debug.Log("param is :" + param);
+                Is_Locked = (param == 1) ? false : true;
+            }
+            else
+                Is_Locked = true;
+            //Debug.Log("IsLock is :" + Is_Locked);
+            LockImage.gameObject.SetActive(Is_Locked);
+            //Debug.Log("---------------------------------------------------------------------");
         }
         else
-            Is_Locked = true;
-        LockImage.gameObject.SetActive(Is_Locked);
+        {
+            //Debug.Log("Load_OR_open Method : _CarName is : "+ _CarName);
+            PlayerPrefsScript.setCarUnlock(_CarName, false);
+        }
     }
     public void saveData()
     {
-        PlayerPrefsScript.setCarUnlock(CarName,Is_Locked);
-        loadData();
+        PlayerPrefsScript.setCarUnlock(CarName, Is_Locked);
+        load_OR_open();
     }
     public void Unlocking()
     {
