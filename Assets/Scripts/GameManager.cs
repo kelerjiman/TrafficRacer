@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
         if (Instance.GM_Current_Prefab == null)
         {
             string TempName = PlayerPrefsScript.getCurrentCar();
-            Debug.Log("Current Car is :" + TempName);
+            //Debug.Log("Current Car is :" + TempName);
             if (TempName != string.Empty)
             {
                 foreach (var car in GM_Player)
@@ -147,31 +147,31 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("tempName is : Empty");
+                //Debug.Log("tempName is : Empty");
                 SetDefaultCar SDC = new SetDefaultCar();
                 FirstCar = SDC.DefaultCarName(DefaultCarNames);
-                Debug.Log("tempName is : " + FirstCar);
+                //Debug.Log("tempName is : " + FirstCar);
                 CardButton CB = new CardButton();
                 CB.load_OR_open(FirstCar);
-                Debug.Log("-------------------------------------------------" +
-                    "in foreach" +
-                    "----------------------------------------------------");
+                //Debug.Log("-------------------------------------------------" +
+                    //"in foreach" +
+                    //"----------------------------------------------------");
                 foreach (var car in GM_Player)
                 {
-                    Debug.Log("Name of Car in GM_Player is " + car.name);
-                    Debug.Log("and First Car is : " + FirstCar);
-                    Debug.Log("----------------------------------------------------");
+                    //Debug.Log("Name of Car in GM_Player is " + car.name);
+                    //Debug.Log("and First Car is : " + FirstCar);
+                    //Debug.Log("----------------------------------------------------");
 
                     if (car.name == FirstCar)
                     {
                         GM_Current_Prefab = car;
-                        Debug.Log("GM Current Prefab Name is :" + car.name);
+                        //Debug.Log("GM Current Prefab Name is :" + car.name);
                     }
                 }
 
-                Debug.Log("-------------------------------------------------" +
-                    "End foreach" +
-                    "----------------------------------------------------");
+                //Debug.Log("-------------------------------------------------" +
+                //    "End foreach" +
+                //    "----------------------------------------------------");
             }
             return;
         }
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
             GM_Total_Coins -= price;
             condition = true;
             PlayerPrefsScript.setTotalCoin(GM_Total_Coins);
-            Debug.Log("purchased");
+            //Debug.Log("purchased");
         }
         return condition;
     }
