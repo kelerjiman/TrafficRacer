@@ -75,7 +75,9 @@
     <Compile Include="Assets\Scripts\Interface\IWindowGeneric.cs" />
     <Compile Include="Assets\Scripts\looseWindow.cs" />
     <Compile Include="Assets\Scripts\MainWindow.cs" />
+    <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\OptionWindow.cs" />
     <Compile Include="Assets\Scripts\PauseWindow.cs" />
     <Compile Include="Assets\Scripts\PlayerPrefsScript.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Assets\Scripts\SignManager.cs" />
     <Compile Include="Assets\Scripts\SignText.cs" />
     <Compile Include="Assets\Scripts\SImage.cs" />
+    <Compile Include="Assets\Scripts\SoundProperties.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TextHolder.cs" />
     <Compile Include="Assets\Scripts\UnderLightColliders.cs" />
