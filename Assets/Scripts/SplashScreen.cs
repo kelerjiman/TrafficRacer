@@ -1,38 +1,44 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SplashScreen : MonoBehaviour
 {
-    [SerializeField] int fadeSpeed = 2;
-    Image Image;
-    Color fadeIn;
-    Color fadeOut;
-    // Start is called before the first frame update
-    void Start()
+    static SplashScreen Instance;
+    [SerializeField] Image color;
+    Color defColor;
+    string fadeOut = "FadeOut";
+    string fadeIn = "FadeIn";
+    Animator anim;
+    bool con;
+    private void Start()
     {
-        Image = GetComponent<Image>();
-        fadeIn = Image.color;
-        fadeOut = fadeIn;
-        fadeOut.a = 0;
+        Instance = this;
+        anim = GetComponent<Animator>();
+        defColor = color.color;
     }
-    private void OnEnable()
+    private void Update()
     {
-        FadeOut();
+        if (Input.GetKeyDown(KeyCode.F))
+            FadeIn();
+        if (Input.GetKeyDown(KeyCode.D))
+            FadeOut();
     }
-    private void OnDisable()
+    public void FadeOut()
     {
-        FadeIn();
+        anim = GetComponent<Animator>();
+        defColor.a = 1;
+        color.color = defColor;
+        anim.SetTrigger(fadeOut);
+
     }
-    void FadeIn()
+    public void FadeIn()
     {
-        Image.color = Color.Lerp(Image.color, fadeIn, fadeSpeed * Time.deltaTime);
-    }
-    void FadeOut()
-    {
-        fadeOut = Image.color;
-        fadeOut.a = 0;
-        Image.color = Color.Lerp(Image.color, fadeOut, fadeSpeed * Time.deltaTime);
+        anim = GetComponent<Animator>();
+        defColor.a = 0;
+        color.color = defColor;
+        anim.SetTrigger(fadeIn);
     }
 }
