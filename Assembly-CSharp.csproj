@@ -55,19 +55,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\GenericAnimationEditor.cs" />
+    <Compile Include="Assets\Editor\SignBehaviorEditor.cs" />
+    <Compile Include="Assets\Scripts\AudioVFX.cs" />
     <Compile Include="Assets\Scripts\border.cs" />
     <Compile Include="Assets\Scripts\BuildingSpawner.cs" />
     <Compile Include="Assets\Scripts\CardButton.cs" />
     <Compile Include="Assets\Scripts\cars.cs" />
     <Compile Include="Assets\Scripts\Car_Collision.cs" />
-    <Compile Include="Assets\Scripts\Coins.cs" />
+    <Compile Include="Assets\Scripts\Coin.cs" />
     <Compile Include="Assets\Scripts\ConstantBehavior.cs" />
     <Compile Include="Assets\Scripts\DayCycle.cs" />
     <Compile Include="Assets\Scripts\Decoration.cs" />
-    <Compile Include="Assets\Scripts\Editor\SignBehaviorEditor.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GenericAnimation.cs" />
     <Compile Include="Assets\Scripts\GenericWindow.cs" />
+    <Compile Include="Assets\Scripts\heart.cs" />
     <Compile Include="Assets\Scripts\InGameButtonManager.cs" />
     <Compile Include="Assets\Scripts\InGameCash.cs" />
     <Compile Include="Assets\Scripts\InGameUI.cs" />
@@ -76,6 +79,8 @@
     <Compile Include="Assets\Scripts\looseWindow.cs" />
     <Compile Include="Assets\Scripts\MainWindow.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\HeartManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\PowerUpManager.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\OptionWindow.cs" />
@@ -83,14 +88,14 @@
     <Compile Include="Assets\Scripts\PlayerPrefsScript.cs" />
     <Compile Include="Assets\Scripts\Pool_\GenericSpawner.cs" />
     <Compile Include="Assets\Scripts\Pool_\ObjectPooler.cs" />
-    <Compile Include="Assets\Scripts\PowerUpSpawner.cs" />
+    <Compile Include="Assets\Scripts\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PurchaseCarWindow.cs" />
     <Compile Include="Assets\Scripts\Road.cs" />
     <Compile Include="Assets\Scripts\RoadTile.cs" />
     <Compile Include="Assets\Scripts\RotationHandle.cs" />
     <Compile Include="Assets\Scripts\RunTimeWindow.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\CardInfo\SO_CarCard.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\RT_Properties.cs" />
-    <Compile Include="Assets\Scripts\ScriptableObjects\SO_CarCard.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\VehichleProp.cs" />
     <Compile Include="Assets\Scripts\SelectCarWindow.cs" />
     <Compile Include="Assets\Scripts\SignBehavior.cs" />
@@ -102,6 +107,7 @@
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TextHolder.cs" />
     <Compile Include="Assets\Scripts\UnderLightColliders.cs" />
+    <Compile Include="Assets\Scripts\UpgradeWindow.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Git-Hubs/TrafficRacer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
