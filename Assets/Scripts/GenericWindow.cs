@@ -14,7 +14,6 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     public GameObject PreviousWindow;
     public virtual void Start()
     {
-        splash = GameManager.Instance.Splash;
         PauseButton.gameObject.SetActive(false);
         Button CloseBtn = CloseButton.GetComponent<Button>();
         Button PauseBtn = PauseButton.GetComponent<Button>();
