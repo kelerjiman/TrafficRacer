@@ -13,7 +13,6 @@ public class InGameButtonManager : MonoBehaviour
     [SerializeField] GameObject[] WindowList;
     [SerializeField]
     Movement player;
-
     private void Start()
     {
         player = FindObjectOfType<Movement>();
@@ -26,7 +25,6 @@ public class InGameButtonManager : MonoBehaviour
     //متد برای دکمه های یو آی
     public void Event_Dir_Down(int x)
     {
-        Debug.Log(player);
         player.X_Input = x;
     }
     public void Event_Acc_Down(int x)
@@ -35,33 +33,27 @@ public class InGameButtonManager : MonoBehaviour
     }
     public void Event_Up(bool dir)
     {
-        Debug.Log(player);
         if (dir)
             player.X_Input = 0;
         else
             player.Z_Input = 0;
     }
-    public void Pause_Button()
-    {
-        foreach (var win in WindowList)
-        {
-            if (win.activeSelf)
-                break;
-
-        }
-    }
     public void Exit_Button()
     {
-        Application.Quit();
+        BackToDefault();
+        if (SceneManager.GetActiveScene().buildIndex > 0)
+            SceneManager.LoadSceneAsync(0);
+        else
+            Application.Quit();
     }
     public void Reload_Button()
     {
-        SceneManager.LoadScene(0);
         BackToDefault();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void OnNext(GameObject NextWin)
     {
-        Debug.Log("OnNext");
+        //Debug.Log("OnNext");
         if (NextWin.name != activeWindow)
             foreach (var win in WindowList)
             {
@@ -87,13 +79,17 @@ public class InGameButtonManager : MonoBehaviour
     }
     public void Sound_Pitch(int x)
     {
-        Debug.Log("player.source.pitch");
+        //Debug.Log("player.source.pitch");
     }
     private void BackToDefault()
     {
+        if(LoosePanel)
         LoosePanel.gameObject.SetActive(false);
-        WinPanel.gameObject.SetActive(false);
-        PausePanel.gameObject.SetActive(false);
+        if (WinPanel)
+            WinPanel.gameObject.SetActive(false);
+        if (PausePanel)
+            PausePanel.gameObject.SetActive(false);
         Time.timeScale = 1;
+        GameManager.Instance.GM_Is_Accident = false;
     }
 }

@@ -17,6 +17,8 @@ public class Movement : MonoBehaviour
     public int health = 1;
 
     public AudioSource source;
+    float DefPitch;
+    private AudioSource BreakSource;
     public void DamageCal(int damage)
     {
         health -= damage;
@@ -26,12 +28,15 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.CompareTag("Cars"))
         {
             health--;
+            BreakSource.PlayOneShot(BreakSource.clip);
+            FindObjectOfType<HeartManager>().OnOffHandle();
             if (health <= 0)
                 GameManager.Instance.GM_Is_Accident = true;
         }
     }
     private void Awake()
     {
+        BreakSource = gameObject.AddComponent<AudioSource>();
         rig = GetComponent<Rigidbody>();
         if (VProps != null)
         {
@@ -44,6 +49,8 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        DefPitch = source.pitch;
+        AudioManager.Instance.SetData(ref BreakSource, "Accident");
         AudioManager.Instance.SetData(ref source, GameManager.Instance.GM_Current_Prefab.name);
         source.Play();
         Speed_Norm();
@@ -101,14 +108,14 @@ public class Movement : MonoBehaviour
             return;
         Vector3 temp = Vector3.forward * GameManager.Instance.GM_MainSpeed * 2;
         rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Nitro() * Time.deltaTime);
-        Debug.Log("================================================================================");
-        Debug.Log("=                                                                              =");
-        Debug.Log("=                                                                              =");
-        Debug.Log("            temp is : " + temp);
-        Debug.Log("=           rig.velocity : " + rig.velocity);
-        Debug.Log("=                                                                              =");
-        Debug.Log("================================================================================");
-
+        //Debug.Log("================================================================================");
+        //Debug.Log("=                                                                              =");
+        //Debug.Log("=                                                                              =");
+        //Debug.Log("            temp is : " + temp);
+        //Debug.Log("=           rig.velocity : " + rig.velocity);
+        //Debug.Log("=                                                                              =");
+        //Debug.Log("================================================================================");
+        
     }
     //متد تنظیم کننده فرایند ترمز کردن
     public void Speed_Dec()
@@ -116,7 +123,6 @@ public class Movement : MonoBehaviour
         /*حداقل و حداکثر سرعت را مشخص و با ترمز و گاز بین این دو تغییر ایجاد کند.*/
         Vector3 temp = Vector3.forward * GameManager.Instance.GM_MainSpeed;
         rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Breaking() * Time.deltaTime);
-        //source.pitch = (rig.velocity.z * 2) / temp.z;
     }
     //متد تنظیم کننده انیمیشن برای فرایند ترمز و گاز
     void Handle_Speed_Anim()

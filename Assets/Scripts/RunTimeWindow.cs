@@ -7,11 +7,9 @@ using UnityEngine.UI;
 public class RunTimeWindow : GenericWindow
 {
     [Header("IN Game Score Script")]
-    [SerializeField]
-    InGameCash Score_InGame;
+    public int Cash_Ingame;
     [Header("UI TEXTS")]
-    [SerializeField]
-    Text T_InGameCash;
+    public Text T_InGameCash;
     [SerializeField] Text T_Time;
     [SerializeField] Text T_MainSpeed;
     [SerializeField] Text T_CurrentSpeed;
@@ -29,7 +27,7 @@ public class RunTimeWindow : GenericWindow
 
     public override void Start()
     {
-        Score_InGame = FindObjectOfType<InGameCash>();
+        //Cash_Ingame = FindObjectOfType<InGameCash>();
         CloseButton.gameObject.SetActive(false);
         base.Start();
         player = FindObjectOfType<Movement>();
@@ -46,7 +44,6 @@ public class RunTimeWindow : GenericWindow
             Handle_MainSpeed();
             Handle_CurrentSpeed();
             Handle_Time();
-            Handle_InGameCash();
         }
     }
 
@@ -64,11 +61,6 @@ public class RunTimeWindow : GenericWindow
     void Handle_Time()
     {
         //T_Time.text = Mathf.Round(Score_InGame.Timer).ToString();
-    }
-    void Handle_InGameCash()
-    {
-        //m_inGamecash = Score_InGame.Score_InGame;
-        //T_InGameCash.text = Score_InGame.Score_InGame.ToString();
     }
     public override void OnAccident()
     {

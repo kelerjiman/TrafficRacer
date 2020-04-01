@@ -6,7 +6,7 @@ public class border : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Player")
+        if (collision.gameObject.tag == "Player")
         {
             Time.timeScale = 0;
         }
@@ -15,4 +15,9 @@ public class border : MonoBehaviour
     {
         Destroy(collision.gameObject);
     }
+    private void OnTriggerExit(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
+
 }

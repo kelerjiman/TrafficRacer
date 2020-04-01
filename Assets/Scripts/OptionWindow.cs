@@ -14,7 +14,7 @@ public class OptionWindow : GenericWindow
     SoundProperties[] sounds;
     public override void Start()
     {
-        Debug.Log("option start");
+        //Debug.Log("option start");
         base.Start();
         OnLoadData();
         //Button btn = CloseButton.GetComponent<Button>();
@@ -24,14 +24,15 @@ public class OptionWindow : GenericWindow
     public void setSoundSlider(string SName)
     {
 
-        Debug.Log(SName);
+        //Debug.Log("master volume before saving is : " + PlayerPrefsScript.getMastervolume());
 
         var sounds = AudioManager.Instance.sounds;
         var sound = Array.Find(sounds, _sound => _sound.Name == SName);
-        Debug.Log("sound name is : " + sound.Name);
+        //Debug.Log("sound name is : " + sound.Name);
         if (masterVolume.value == -80)
         {
             mute.isOn = true;
+            PlayerPrefsScript.setMutevolume(true);
             OnMuteChange(SName);
         }
         else
@@ -41,7 +42,8 @@ public class OptionWindow : GenericWindow
         }
         sound.mixerGroup.audioMixer.SetFloat(sound.mixerGroup.name, masterVolume.value);
         AudioManager.Instance.SetData(ref sound.source, SName);
-        OnSaveButton();
+        //OnSaveButton();
+        //Debug.Log("master volume after saving is : "+PlayerPrefsScript.getMastervolume());
     }
     public void OnMuteChange(string SName)
     {
@@ -49,10 +51,10 @@ public class OptionWindow : GenericWindow
 
         var sounds = AudioManager.Instance.sounds;
         var sound = Array.Find(sounds, _sound => _sound.Name == SName);
-        Debug.Log("sound name is : " + sound.Name);
+        //Debug.Log("sound name is : " + sound.Name);
 
         sound.mute = (SName == "Theme") ? mute.isOn : sfxMute.isOn;
-        Debug.Log("mixer group name is : " + sound.mixerGroup.name);
+        //Debug.Log("mixer group name is : " + sound.mixerGroup.name);
         float toggle = (sound.mute) ? -80 : masterVolume.value;
         sound.mixerGroup.audioMixer.SetFloat(sound.mixerGroup.name, toggle);
         masterVolume.value = toggle;
@@ -63,14 +65,14 @@ public class OptionWindow : GenericWindow
     {
         masterVolume.value = PlayerPrefsScript.getMastervolume();
         mute.isOn = PlayerPrefsScript.getMutevolume();
-        Debug.Log("============== option Onload ================");
-        Debug.Log("master volume in playerPrefs is : "+PlayerPrefsScript.getMastervolume());
-        Debug.Log("Mute volume in playerPrefs is : " + PlayerPrefsScript.getMutevolume());
-        Debug.Log("============================================");
+        //Debug.Log("============== option Onload ================");
+        //Debug.Log("master volume in playerPrefs is : "+PlayerPrefsScript.getMastervolume());
+        //Debug.Log("Mute volume in playerPrefs is : " + PlayerPrefsScript.getMutevolume());
+        //Debug.Log("============================================");
     }
     public void OnSaveButton()
     {
-        Debug.Log("======================== on save Button =======================");
+        //Debug.Log("======================== on save Button =======================");
         PlayerPrefsScript.setMastervolume(masterVolume.value);
         PlayerPrefsScript.setMutevolume(mute.isOn);
         PlayerPrefsScript.setKindOfControl(m_KindOfControl);
@@ -91,6 +93,6 @@ public class OptionWindow : GenericWindow
         OnSaveButton();
         base.OnCloseButton();
     }
-    ..
+
     //تنظیمات ذخیره نمی شود درست شود
 }

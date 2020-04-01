@@ -55,8 +55,8 @@ public class VehichleProp : ScriptableObject
     [Space]
     [Header("Breaking")]
     [SerializeField]
-    [Range(0, 1)]
-    float BreakingRate = 0.2f;
+    [Range(0, 10)]
+    float BreakingRate = 2;
     public float Get_Breaking()
     {
         return BreakingRate;

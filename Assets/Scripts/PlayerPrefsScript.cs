@@ -65,6 +65,7 @@ public class PlayerPrefsScript : MonoBehaviour
     public static void setMutevolume(bool mute)
     {
         int x = (mute) ? 1 : 0;
+        PlayerPrefs.SetInt(MUTE, x);
     }
     public static void setKindOfControl(int Index)
     {

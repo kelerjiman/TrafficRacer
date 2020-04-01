@@ -1,0 +1,366 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6024055048912922241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6024055048912922243}
+  - component: {fileID: 6024055048912922245}
+  - component: {fileID: 6024055048912922240}
+  - component: {fileID: 6024055048912922242}
+  - component: {fileID: 6024055048912922244}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6024055048912922243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024055048912922241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &6024055048912922245
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024055048912922241}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243081877797988296, guid: 53ea7b2d4c6247a44b845a24a7660669,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 0.6
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &6024055048912922240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024055048912922241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a202ede379b8e4408db8f2c44c14bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultCarNames: 0
+  GM_In_gamecash: 0
+  GM_Total_Coins: 3000
+  GM_MainSpeed: 5
+  GM_Is_Accident: 0
+  GM_Player:
+  - {fileID: 4061907140514952257, guid: 08f33b14da713ee43b50de92b04739b2, type: 3}
+  - {fileID: 5826686737098750114, guid: 1ecf931ee8e74064196b889b0f88c7b0, type: 3}
+  - {fileID: 4329628036595830204, guid: 5c64c78956cc75c4abfe5cfc8bd5ad75, type: 3}
+  - {fileID: 4306135104056338286, guid: f24279cd214781f4bb3bd1682b055eb0, type: 3}
+  - {fileID: 8836272938425796745, guid: 98f3139fe40e4f342aba32d3fcfcc12b, type: 3}
+  - {fileID: 2289007589299881931, guid: 1b44cc0574d1ed540826dda3ddac6790, type: 3}
+  - {fileID: 6977177901532478226, guid: 02fc0918d1221a640b2ba5a4042c060d, type: 3}
+  - {fileID: 6066175591687454296, guid: 4dfe713d5e6f53b4cad90c032dd95aa4, type: 3}
+  - {fileID: 102617844981203859, guid: 8af325c2eefca5d40bf8ce0d9999431e, type: 3}
+  - {fileID: 247031966712055796, guid: 1871aae8f19b0294993d09505f9e3207, type: 3}
+  - {fileID: 949506615150398908, guid: 54f2339784d45214ab4d7e455381b6d7, type: 3}
+  GM_Current_Prefab: {fileID: 0}
+  GM_Bounces: []
+  GM_PlayerCarIndex: 0
+  GM_DefPos: {x: 0, y: 0, z: 0}
+  m_PGlobalSpeed: 50
+  m_changeAmount: 0
+--- !u!114 &6024055048912922242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024055048912922241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13542a8f35581b64a94c38908a5b630f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - Name: Theme
+    clip: {fileID: 8300000, guid: cd34cba3a26f7d84a951313675651d03, type: 3}
+    mute: 0
+    volume: 0.5
+    pitch: 1
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 1
+    mixerGroup: {fileID: 243081877797988296, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Ambulance
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Bus
+    clip: {fileID: 8300000, guid: 200384f1d8063eb449cba4bec9e485c7, type: 3}
+    mute: 0
+    volume: 0.62
+    pitch: 1.08
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: CamperVan
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: ConstructionTruck
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Crane
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Jeep
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Normal
+    clip: {fileID: 8300000, guid: 1a39652b55ef6dc4c894ece2783c58c7, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: PoliceCar
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: SuperCar
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Taxi
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Van
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Break
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Horn
+    clip: {fileID: 8300000, guid: f42ee6c61e2b5a049b588a485b2f267f, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  - Name: Accident
+    clip: {fileID: 8300000, guid: a1f7abf0dd920704dab30efe19ec8631, type: 3}
+    mute: 0
+    volume: 0.75
+    pitch: 1.2
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 243114084836864626, guid: 53ea7b2d4c6247a44b845a24a7660669,
+      type: 2}
+    source: {fileID: 0}
+  MasteMixer: {fileID: 24100000, guid: 53ea7b2d4c6247a44b845a24a7660669, type: 2}
+--- !u!95 &6024055048912922244
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024055048912922241}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

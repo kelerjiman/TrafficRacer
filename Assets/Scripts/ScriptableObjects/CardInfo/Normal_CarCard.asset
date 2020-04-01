@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Normal_CarCard
   m_EditorClassIdentifier: 
   CarIcon: {fileID: 21300000, guid: 5074cf653781d734f85ffa9fbcfc2617, type: 3}
-  CarName: NormalCar
+  CarName: Normal
   Prefab: {fileID: 6977177901532478226, guid: 02fc0918d1221a640b2ba5a4042c060d, type: 3}
   ProductCoinRate: 0.605
   MultipleScoreRate: 0.854
+  Price: 0

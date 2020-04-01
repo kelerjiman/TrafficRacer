@@ -95,6 +95,6 @@ public class CardButton : MonoBehaviour
     }
     void tempInfo()
     {
-        Debug.Log(CarName + " " + PlayerPrefsScript.getCarUnlock(CarName));
+        //Debug.Log(CarName + " " + PlayerPrefsScript.getCarUnlock(CarName));
     }
 }

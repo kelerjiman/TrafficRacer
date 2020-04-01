@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Truck_1_CarCard
   m_EditorClassIdentifier: 
   CarIcon: {fileID: 21300000, guid: 3f603ee5b2d38cc43a84bbe15ed348aa, type: 3}
-  CarName: Truck_1
+  CarName: ConstructionTruck
   Prefab: {fileID: 4306135104056338286, guid: f24279cd214781f4bb3bd1682b055eb0, type: 3}
   ProductCoinRate: 0.16
   MultipleScoreRate: 0.741

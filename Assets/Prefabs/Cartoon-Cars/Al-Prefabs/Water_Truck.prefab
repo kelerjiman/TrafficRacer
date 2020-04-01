@@ -69,14 +69,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3593860307427895764}
-  - component: {fileID: 3593860307418302010}
   - component: {fileID: 4536185728099274366}
-  - component: {fileID: 5826023452245455064}
   - component: {fileID: 3802213194139351679}
   - component: {fileID: 44525159227231802}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Water_Truck
-  m_TagString: Untagged
+  m_TagString: Cars
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,32 +88,12 @@ Transform:
   m_GameObject: {fileID: 3593860307427669492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 6.5, y: 5.5, z: 6.5}
   m_Children:
-  - {fileID: 3593860307427895770}
-  - {fileID: 3593860307427895768}
+  - {fileID: 7733817763630831348}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &3593860307418302010
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3593860307427669492}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d3a72b62470149444a0ee1cea7b0443c, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6f29909e9dd3fbb479aa4a6689bf6da4, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &4536185728099274366
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,24 +105,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43536556, y: 0.51378655, z: 0.8379287}
-  m_Center: {x: 0.000000059604645, y: 0.24310672, z: -0.0026139915}
---- !u!114 &5826023452245455064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3593860307427669492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 357c1143237b6c4418d02d29b05e305f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  XPos: 0
-  speed: 5
-  CurrentPosition: {x: 0, y: 0, z: 0}
-  Have_Permission_Change: 1
+  m_Size: {x: 0.36663657, y: 0.43406105, z: 0.7197147}
+  m_Center: {x: 0.0013746321, y: 0.21973884, z: 0.0070081055}
 --- !u!54 &3802213194139351679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,7 +115,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593860307427669492}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -174,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainSpeed: 8
+  model: {fileID: 3890316052391246279}
 --- !u!1 &3593860307427669494
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,16 +190,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593860307427669496}
-  m_LocalRotation: {x: 0.000000015454312, y: 0.7071067, z: -0.000000015454308, w: 0.7071068}
-  m_LocalPosition: {x: -0.00000000194058, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3593860307427895774}
   - {fileID: 3593860307427895772}
   - {fileID: 3593860307427895762}
-  m_Father: {fileID: 3593860307427895764}
+  m_Father: {fileID: 7733817763630831348}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &3593860307427669498
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,11 +224,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593860307427669498}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3593860307427895764}
+  m_Father: {fileID: 7733817763630831348}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3593860307422460154
@@ -385,3 +348,55 @@ Transform:
   m_Father: {fileID: 3593860307427895768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3890316052391246279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7733817763630831348}
+  - component: {fileID: 1250953299711640529}
+  m_Layer: 0
+  m_Name: FullBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7733817763630831348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3890316052391246279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3593860307427895770}
+  - {fileID: 3593860307427895768}
+  m_Father: {fileID: 3593860307427895764}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1250953299711640529
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3890316052391246279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d3a72b62470149444a0ee1cea7b0443c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6f29909e9dd3fbb479aa4a6689bf6da4, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

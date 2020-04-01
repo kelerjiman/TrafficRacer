@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuperCar_CarCard
   m_EditorClassIdentifier: 
   CarIcon: {fileID: 21300000, guid: 8177f46088d961e469d6664a56940c55, type: 3}
-  CarName: SuperCar
+  CarName: Super
   Prefab: {fileID: 102617844981203859, guid: 8af325c2eefca5d40bf8ce0d9999431e, type: 3}
   ProductCoinRate: 0.724
   MultipleScoreRate: 0.825

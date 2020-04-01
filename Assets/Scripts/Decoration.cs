@@ -41,7 +41,8 @@ public class Decoration : MonoBehaviour
             temp.x = NewXPos;
             CurrentPos = temp;
         }
-        if (player.transform.position.z > (spawnZ - TileCount * TileLenght) || GetComponentsInChildren<Transform>().Length < TileCount)
+        if (player.transform.position.z > (spawnZ - TileCount * TileLenght) 
+            || GetComponentsInChildren<Transform>().Length < TileCount)
         {
             TileRespawnHandle(PrefabsList[Random.Range(0, PrefabsList.Count)]);
         }

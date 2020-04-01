@@ -19,7 +19,7 @@ public class cars : MonoBehaviour, IPooler
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("accident was accured");
+            //Debug.Log("accident was accured");
             model.transform.rotation = Quaternion.Euler(0, 15 + m_defRot, 0);
             m_accident = true;
         }

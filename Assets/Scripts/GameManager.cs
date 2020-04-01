@@ -93,12 +93,16 @@ public class GameManager : MonoBehaviour
     public Vector3 GM_DefPos = Vector3.zero;
     [SerializeField] float m_PGlobalSpeed = 5f;
     [SerializeField] int m_changeAmount = 0;
+    float m_defSpeed = 0;
+    Vector3 defScale = Vector3.zero;
 
     private void Awake()
     {
         GM_Total_Coins = PlayerPrefsScript.getTotalCoin();
+        //Debug.Log("Scene Index is : " + SceneManager.GetActiveScene().buildIndex);
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
+            //Debug.Log("Game manager Awake");
             Handle_ChangeCar();
         }
     }
@@ -107,22 +111,22 @@ public class GameManager : MonoBehaviour
         //RestorePurchasing();
         //var temp = FindObjectsOfType<GameManager>();
         //if (temp.Length > 0)
-        //    foreach (var item in temp)
-        //    {
-        //        Destroy(item);
-        //    }
-        //DontDestroyOnLoad(gameObject);
+        //    Destroy(gameObject);
+        //else
+        //    DontDestroyOnLoad(gameObject);
         Instance = this;
-        Debug.Log(PlayerPrefsScript.getTotalCoin());
+        //Debug.Log(PlayerPrefsScript.getTotalCoin());
         Handle_ChangeCar();
+        defScale = GM_Current_Prefab.transform.localScale;
+        m_defSpeed = GM_MainSpeed;
     }
     private void Update()
     {
-        GM_Is_Accident = false;
+        //GM_Is_Accident = false;
         //todo bayad pak shavad
         if (SceneManager.GetActiveScene().buildIndex == 0)
             return;
-        GM_MainSpeed = m_PGlobalSpeed;
+        //GM_MainSpeed = m_PGlobalSpeed;
     }
     void Handle_Accident()
     {
@@ -133,7 +137,7 @@ public class GameManager : MonoBehaviour
     }
     public void Handle_ChangeCar()
     {
-        if (Instance.GM_Current_Prefab == null)
+        if (GameManager.Instance.GM_Current_Prefab == null)
         {
             string TempName = PlayerPrefsScript.getCurrentCar();
             //Debug.Log("Current Car is :" + TempName);
@@ -154,8 +158,8 @@ public class GameManager : MonoBehaviour
                 CardButton CB = new CardButton();
                 CB.load_OR_open(FirstCar);
                 //Debug.Log("-------------------------------------------------" +
-                    //"in foreach" +
-                    //"----------------------------------------------------");
+                //"in foreach" +
+                //"----------------------------------------------------");
                 foreach (var car in GM_Player)
                 {
                     //Debug.Log("Name of Car in GM_Player is " + car.name);
@@ -204,6 +208,38 @@ public class GameManager : MonoBehaviour
     public void RestorePurchasing()
     {
         PlayerPrefs.DeleteAll();
+    }
+    public void Scale(Movement player, int x, bool IsPositive)
+    {
+        var temp = player.transform.localScale;
+        if (IsPositive)
+            player.transform.localScale = Vector3.Lerp(temp, temp * 2, 2 * Time.deltaTime);
+        else
+            player.transform.localScale = Vector3.Lerp(temp, (temp * -2), 2 * Time.deltaTime);
+        StartCoroutine(ScaleTimer(player, x));
+    }
+    public void speed(Movement player, int x, bool Positive)
+    {
+        if (Positive)
+        {
+            GM_MainSpeed += (int)(GM_MainSpeed * 10 / 100);
+        }
+        else
+        {
+            GM_MainSpeed -= (int)(GM_MainSpeed * 10 / 100);
+        }
+        StartCoroutine(SpeedTimer(player, x));
+    }
+    IEnumerator ScaleTimer(Movement player, int x)
+    {
+        yield return new WaitForSeconds(x);
+        player.transform.localScale = defScale;
+            //Vector3.Lerp(player.transform.localScale, defScale, 2 * Time.deltaTime);
+    }
+    IEnumerator SpeedTimer(Movement player, int x)
+    {
+        yield return new WaitForSeconds(x);
+        GM_MainSpeed = m_defSpeed;
     }
 }
 
