@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class GenericWindow : MonoBehaviour, IWindowGeneric
 {
+    public GameObject splash;
     public Text Coins;
     public Button CloseButton;
     public Button PauseButton;
     public GameObject PreviousWindow;
     public virtual void Start()
     {
+        splash = GameManager.Instance.Splash;
         PauseButton.gameObject.SetActive(false);
         Button CloseBtn = CloseButton.GetComponent<Button>();
         Button PauseBtn = PauseButton.GetComponent<Button>();
@@ -49,6 +51,7 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     public virtual void OnNext(GameObject NextWin)
     {
         NextWin.gameObject.SetActive(true);
+        splash.SetActive(false);
         NextWin.GetComponent<IWindowGeneric>().reloadSetting();
         this.gameObject.SetActive(false);
     }
@@ -64,6 +67,7 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
         //PauseBtn.onClick.AddListener(OnPauseButton);
         CloseBtn.onClick.AddListener(() => OnCloseButton());
         PauseBtn.onClick.AddListener(() => OnPauseButton());
+        splash.SetActive(true);
     }
     //listener 
 }
