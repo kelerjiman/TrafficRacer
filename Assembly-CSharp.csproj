@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\SImage.cs" />
     <Compile Include="Assets\Scripts\SoundProperties.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\SplashScreen.cs" />
     <Compile Include="Assets\Scripts\TextHolder.cs" />
     <Compile Include="Assets\Scripts\UnderLightColliders.cs" />
     <Compile Include="Assets\Scripts\UpgradeWindow.cs" />
