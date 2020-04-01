@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         Ambulance
     }
     public static GameManager Instance;
-    public GameObject Splash;
+    public SplashScreen Splash;
     [SerializeField] CarNames DefaultCarNames;
     string FirstCar;
     //In game UI elements
