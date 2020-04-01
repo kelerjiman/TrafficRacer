@@ -7,7 +7,6 @@ public class MainWindow : GenericWindow
     public override void Start()
     {
         base.Start();
-        splash.SetActive(true);
         PauseButton.gameObject.SetActive(false);
     }
     public override void OnPauseButton()
