@@ -22,23 +22,21 @@ public class SplashScreen : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
-            FadeIn();
+            FadeInOut(true);
         if (Input.GetKeyDown(KeyCode.D))
-            FadeOut();
+            FadeInOut(false);
+        //Debug.Log(GameManager.Instance.timeTOChangeWindow);
     }
-    public void FadeOut()
+    public void FadeInOut(bool trigger)
     {
+        GameManager.Instance.timeTOChangeWindow = false;
         anim = GetComponent<Animator>();
-        defColor.a = 1;
-        color.color = defColor;
-        anim.SetTrigger(fadeOut);
+        anim.SetBool("FadeIn",trigger);
+    }
+    public void toggle()
+    {
+        GameManager.Instance.timeTOChangeWindow = true;
+    }
+    //darmorede in fekr shavad
 
-    }
-    public void FadeIn()
-    {
-        anim = GetComponent<Animator>();
-        defColor.a = 0;
-        color.color = defColor;
-        anim.SetTrigger(fadeIn);
-    }
 }
