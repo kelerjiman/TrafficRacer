@@ -29,13 +29,12 @@ public class SplashScreen : MonoBehaviour
     }
     public void FadeInOut(bool trigger)
     {
-        GameManager.Instance.timeTOChangeWindow = false;
         anim = GetComponent<Animator>();
         anim.SetBool("FadeIn",trigger);
     }
     public void toggle()
     {
-        GameManager.Instance.timeTOChangeWindow = true;
+
     }
     //darmorede in fekr shavad
 
