@@ -11,16 +11,11 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     public Button CloseButton;
     public Button PauseButton;
     public GameObject PreviousWindow;
+    [SerializeField] SplashScreen splash;
     public virtual void Start()
     {
+        reloadSetting();
         PauseButton.gameObject.SetActive(false);
-        Button CloseBtn = CloseButton.GetComponent<Button>();
-        Button PauseBtn = PauseButton.GetComponent<Button>();
-        //CloseBtn.onClick.AddListener(OnCloseButton);
-        CloseBtn.onClick.RemoveAllListeners();
-        PauseBtn.onClick.RemoveAllListeners();
-        CloseBtn.onClick.AddListener(() => OnCloseButton());
-        PauseBtn.onClick.AddListener(() => OnPauseButton());
     }
     public virtual void Update()
     {
@@ -36,14 +31,15 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     public virtual void OnCloseButton()
     {
         PreviousWindow.SetActive(true);
-        gameObject.SetActive(false);
         PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
+        gameObject.SetActive(false);
     }
     public virtual void OnPauseButton()
     {
         Debug.Log("On Pause Button");
         Time.timeScale = 0;
         PreviousWindow.SetActive(true);
+        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
         gameObject.SetActive(false);
     }
     public virtual void OnNext(GameObject NextWin)
@@ -55,15 +51,26 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     public virtual void OnNextScene(int SIndex)
     {
         SceneManager.LoadScene(SIndex);
+        //داخل بازی ارور میدهد.
     }
     public virtual void reloadSetting()
     {
+        Time.timeScale = 1;
         Button CloseBtn = CloseButton.GetComponent<Button>();
         Button PauseBtn = PauseButton.GetComponent<Button>();
-        //CloseBtn.onClick.AddListener(OnCloseButton);
-        //PauseBtn.onClick.AddListener(OnPauseButton);
+        CloseBtn.onClick.RemoveAllListeners();
+        PauseBtn.onClick.RemoveAllListeners();
         CloseBtn.onClick.AddListener(() => OnCloseButton());
         PauseBtn.onClick.AddListener(() => OnPauseButton());
+        Debug.Log("this is " + gameObject.name);
+        PauseBtn.gameObject.SetActive(false);
+        splash = GetComponentInChildren<SplashScreen>();
+        if (splash != null)
+        {
+            //splash.FadeInOut(true);
+            splash.FadeInOut(false);
+            Debug.Log(splash.name);
+        }
     }
     //listener 
 }
