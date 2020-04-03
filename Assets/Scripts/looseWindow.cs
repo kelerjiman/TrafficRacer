@@ -9,10 +9,4 @@ public class looseWindow : GenericWindow
     {
         base.Start();
     }
-
-    // Update is called once per frame
-    public override void Update()
-    {
-        OnAccident();
-    }
 }
