@@ -6,11 +6,9 @@ using UnityEngine.UI;
 
 public class PauseWindow : GenericWindow
 {
-    [SerializeField] Movement player;
     public override void Start()
     {
         base.Start();
-        player = FindObjectOfType<Movement>();
     }
     public override void Update()
     {
@@ -22,22 +20,10 @@ public class PauseWindow : GenericWindow
     {
         SceneManager.LoadScene(0);
     }
-    public override void OnNextScene(int SIndex)
-    {
-        SceneManager.LoadScene(SIndex);
-    }
     public override void OnPauseButton()
     {
-        PreviousWindow.SetActive(true);
-        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
+        GameManager.Instance.player.gameObject.SetActive(true);
+        base.OnPauseButton();
         Time.timeScale = 1;
-        gameObject.SetActive(false);
-    }
-    public override void reloadSetting()
-    {
-        base.reloadSetting();
-        if(player==null)
-        player = FindObjectOfType<Movement>();
-        player.gameObject.SetActive(false);
     }
 }
