@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     [Header("Car prefabs")]
     public GameObject[] GM_Player;
     public GameObject GM_Current_Prefab;
+    public Movement player;
     [Header("Bounces Prefabs")]
     public GameObject[] GM_Bounces;
     [Header("Index Of car")]
