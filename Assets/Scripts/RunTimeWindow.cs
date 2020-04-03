@@ -31,6 +31,7 @@ public class RunTimeWindow : GenericWindow
         CloseButton.gameObject.SetActive(false);
         base.Start();
         player = FindObjectOfType<Movement>();
+        GameManager.Instance.player = player;
     }
     public override void Update()
     {
@@ -74,14 +75,12 @@ public class RunTimeWindow : GenericWindow
     }
     public override void OnPauseButton()
     {
-        gameObject.SetActive(false);
-        PreviousWindow.SetActive(true);
-        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
+        player.gameObject.SetActive(false);
         base.OnPauseButton();
     }
     public override void reloadSetting()
     {
         base.reloadSetting();
-        player.gameObject.SetActive(true);
+        PauseButton.gameObject.SetActive(true);
     }
 }
