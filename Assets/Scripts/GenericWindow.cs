@@ -30,27 +30,35 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     }
     public virtual void OnCloseButton()
     {
-        PreviousWindow.SetActive(true);
-        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
-        gameObject.SetActive(false);
+        OnNext(PreviousWindow);
     }
     public virtual void OnPauseButton()
     {
         Debug.Log("On Pause Button");
         Time.timeScale = 0;
-        PreviousWindow.SetActive(true);
-        PreviousWindow.GetComponent<IWindowGeneric>().reloadSetting();
-        gameObject.SetActive(false);
+        OnNext(PreviousWindow);
     }
     public virtual void OnNext(GameObject NextWin)
     {
-        NextWin.gameObject.SetActive(true);
-        NextWin.GetComponent<IWindowGeneric>().reloadSetting();
-        this.gameObject.SetActive(false);
+        StartCoroutine(SW_Window(NextWin));
+    }
+    IEnumerator SW_Window(GameObject NextWin = null, int i = -1)
+    {
+        splash.FadeInOut(true);
+        yield return new WaitForSeconds(1.3f);
+        if (NextWin != null)
+        {
+            NextWin.GetComponent<IWindowGeneric>().reloadSetting();
+            NextWin.gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
+        }
+        else
+            if (i > -1)
+            SceneManager.LoadScene(i);
     }
     public virtual void OnNextScene(int SIndex)
     {
-        SceneManager.LoadScene(SIndex);
+        StartCoroutine(SW_Window(null, SIndex));
         //داخل بازی ارور میدهد.
     }
     public virtual void reloadSetting()
@@ -72,5 +80,4 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
             Debug.Log(splash.name);
         }
     }
-    //listener 
 }

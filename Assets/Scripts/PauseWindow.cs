@@ -16,10 +16,6 @@ public class PauseWindow : GenericWindow
         if (!PauseButton.gameObject.activeSelf)
             PauseButton.gameObject.SetActive(false);
     }
-    public override void OnCloseButton()
-    {
-        SceneManager.LoadScene(0);
-    }
     public override void OnPauseButton()
     {
         GameManager.Instance.player.gameObject.SetActive(true);
