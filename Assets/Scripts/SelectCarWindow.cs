@@ -25,10 +25,5 @@ public class SelectCarWindow : GenericWindow
             x.GetComponent<CardButton>().SetInfo(item);
         }
     }
-    public override void OnCloseButton()
-    {
-
-        base.OnCloseButton();
-    }
 
 }
