@@ -35,5 +35,11 @@ public class PurchaseCarWindow : GenericWindow
             alarmText.SetActive(cardButton.Is_Locked);
         }
     }
+    public override void OnNext(GameObject NextWin)
+    {
+        NextWin.GetComponent<IWindowGeneric>().reloadSetting();
+        NextWin.gameObject.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
 
 }
