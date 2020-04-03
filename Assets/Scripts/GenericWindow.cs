@@ -44,8 +44,9 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     }
     IEnumerator SW_Window(GameObject NextWin = null, int i = -1)
     {
-        splash.FadeInOut(true);
-        yield return new WaitForSeconds(1.3f);
+        if (splash != null)
+            splash.FadeInOut(true);
+        yield return new WaitForSeconds(0.70f);
         if (NextWin != null)
         {
             NextWin.GetComponent<IWindowGeneric>().reloadSetting();
