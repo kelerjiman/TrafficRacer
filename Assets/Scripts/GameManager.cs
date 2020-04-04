@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     public int GM_Total_Coins = 3000;//باید مقدار صفر شود
     public float GM_MainSpeed = 5f;
     public bool GM_Is_Accident = false;
+    public int GM_Multiple = 1;
     //به نحوه انتخاب وسیله فکر شود
     //قرار است که این گیم ابجکت در تمام بازی ست شود
 
@@ -110,14 +111,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        //RestorePurchasing();
-        //var temp = FindObjectsOfType<GameManager>();
-        //if (temp.Length > 0)
-        //    Destroy(gameObject);
-        //else
-        //    DontDestroyOnLoad(gameObject);
         Instance = this;
-        //Debug.Log(PlayerPrefsScript.getTotalCoin());
         Handle_ChangeCar();
         defScale = GM_Current_Prefab.transform.localScale;
         m_defSpeed = GM_MainSpeed;
