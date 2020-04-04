@@ -345,9 +345,10 @@ MonoBehaviour:
   types: 2
   Particle: {fileID: 100000, guid: 3f2703c0c64431f46b1977fc6049670b, type: 3}
   prize: 0
+  score: 5
   model: {fileID: 1005331786225832931}
   IsPositive: 0
-  Timer: 2
+  Timer: 5
 --- !u!1 &6259692926593701905
 GameObject:
   m_ObjectHideFlags: 0

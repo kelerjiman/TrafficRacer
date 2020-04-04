@@ -265,6 +265,7 @@ MonoBehaviour:
   types: 3
   Particle: {fileID: 100000, guid: 3f2703c0c64431f46b1977fc6049670b, type: 3}
   prize: 0
+  score: 1
   model: {fileID: 6752916616606540073}
   IsPositive: 0
-  Timer: 2
+  Timer: 5
