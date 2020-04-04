@@ -31,7 +31,11 @@ public class Movement : MonoBehaviour
             BreakSource.PlayOneShot(BreakSource.clip);
             FindObjectOfType<HeartManager>().OnOffHandle();
             if (health <= 0)
+            {
                 GameManager.Instance.GM_Is_Accident = true;
+                ScoreManager.Instance.TotalDistance =(int) transform.position.z;
+                ScoreManager.Instance.timeToCount = true;
+            }
         }
     }
     private void Awake()

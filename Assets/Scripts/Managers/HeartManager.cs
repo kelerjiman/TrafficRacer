@@ -19,7 +19,6 @@ public class HeartManager : MonoBehaviour
     }
     public void OnOffHandle()
     {
-        Debug.Log("OnOffHandle");
         GameObject temp = new GameObject();
         for (int i = 0; i < children.Count; i++)
         {

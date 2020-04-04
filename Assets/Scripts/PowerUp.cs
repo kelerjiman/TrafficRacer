@@ -15,6 +15,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField] Type types;
     [SerializeField] GameObject Particle;
     [SerializeField] int prize = 1;
+    [SerializeField] int score = 1;
     Movement player;
     [Header("Model: ")]
     [SerializeField]
@@ -24,23 +25,26 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Movement>();
+        Destroy(gameObject, 20);
     }
     private void Update()
     {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == player.tag)
-        {
-            if (prize > 0)
-                Coins();
-            else
+        if (!GameManager.Instance.GM_Is_Accident)
+            if (other.tag == player.tag)
             {
-                _other();
+                if (prize > 0)
+                    Coins();
+                else
+                {
+                    _other();
+                    ScoreManager.Instance.Powerups += score;
+                }
+                //instantiate particle
+                instantiate();
             }
-            //instantiate particle
-            instantiate();
-        }
         //hide game object
 
     }
@@ -57,8 +61,8 @@ public class PowerUp : MonoBehaviour
         var totalCoin = PlayerPrefsScript.getTotalCoin();
         totalCoin += prize;
         PlayerPrefsScript.setTotalCoin(totalCoin);
+        GameManager.Instance.GM_Total_Coins = totalCoin;
         //--------------------------------------------------------
-
     }
     private void _other()
     {
@@ -88,11 +92,5 @@ public class PowerUp : MonoBehaviour
         model.SetActive(false);
         gameObject.SetActive(false);
         Destroy(gameObject, partical.main.duration);
-    }
-
-    public IEnumerator PUTimer()
-    {
-        yield return new WaitForSeconds(Timer);
-
     }
 }

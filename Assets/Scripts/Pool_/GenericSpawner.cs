@@ -15,14 +15,15 @@ public class GenericSpawner : MonoBehaviour
 
     public virtual void Start()
     {
-        
+
     }
     public virtual void Update()
     {
-        
+
     }
     public virtual void SpawnObjects()
     {
-        OP.SpawnFromPool(Tag, respawnPoint.transform.position, respawnPoint.transform.rotation);
+        if (!GameManager.Instance.GM_Is_Accident)
+            OP.SpawnFromPool(Tag, respawnPoint.transform.position, respawnPoint.transform.rotation);
     }
 }
