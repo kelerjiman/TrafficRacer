@@ -9,20 +9,11 @@ public class InGameButtonManager : MonoBehaviour
     [SerializeField] CanvasRenderer PausePanel;
     [SerializeField] CanvasRenderer LoosePanel;
     [SerializeField] CanvasRenderer WinPanel;
-    [SerializeField] string activeWindow;
-    [SerializeField] GameObject[] WindowList;
-    [SerializeField]
     Movement player;
     private void Start()
     {
         player = FindObjectOfType<Movement>();
     }
-    private void Update()
-    {
-        if (!player)
-            player = FindObjectOfType<Movement>();
-    }
-    //متد برای دکمه های یو آی
     public void Event_Dir_Down(int x)
     {
         player.X_Input = x;
@@ -37,59 +28,5 @@ public class InGameButtonManager : MonoBehaviour
             player.X_Input = 0;
         else
             player.Z_Input = 0;
-    }
-    public void Exit_Button()
-    {
-        BackToDefault();
-        if (SceneManager.GetActiveScene().buildIndex > 0)
-            SceneManager.LoadSceneAsync(0);
-        else
-            Application.Quit();
-    }
-    public void Reload_Button()
-    {
-        BackToDefault();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void OnNext(GameObject NextWin)
-    {
-        //Debug.Log("OnNext");
-        if (NextWin.name != activeWindow)
-            foreach (var win in WindowList)
-            {
-                if (win.name == NextWin.name)
-                    win.gameObject.SetActive(true);
-                else
-                    win.gameObject.SetActive(false);
-            }
-        activeWindow = NextWin.name;
-        //if (activeWindow == "RunTimeWindow")
-        //    SceneManager.LoadScene(1);
-        //if (activeWindow == "MainWindow")
-        //    SceneManager.LoadScene(0);
-    }
-    public void OnNextScene(int SIndex)
-    {
-        if (SceneManager.GetActiveScene().buildIndex != SIndex)
-            SceneManager.LoadScene(SIndex);
-    }
-    public void Main_Menu_Button()
-    {
-
-    }
-    public void Sound_Pitch(int x)
-    {
-        //Debug.Log("player.source.pitch");
-    }
-    private void BackToDefault()
-    {
-        if(LoosePanel)
-        LoosePanel.gameObject.SetActive(false);
-        if (WinPanel)
-            WinPanel.gameObject.SetActive(false);
-        if (PausePanel)
-            PausePanel.gameObject.SetActive(false);
-        Time.timeScale = 1;
-        GameManager.Instance.GM_Is_Accident = false;
     }
 }
