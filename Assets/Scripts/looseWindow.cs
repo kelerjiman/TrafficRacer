@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class looseWindow : GenericWindow
 {
-    // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        CloseButton.gameObject.SetActive(false);
+    }
+    public override void OnNextScene(int SIndex)
+    {
+        GameManager.Instance.GM_Is_Accident = false;
+        base.OnNextScene(SIndex);
+    }
+    public override void reloadSetting()
+    {
+        GameManager.Instance.player.gameObject.SetActive(false);
+        base.reloadSetting();
+
     }
 }

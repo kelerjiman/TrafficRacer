@@ -59,6 +59,8 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     }
     public virtual void OnNextScene(int SIndex)
     {
+        if (GameManager.Instance.player != null)
+            GameManager.Instance.player.gameObject.SetActive(true);
         StartCoroutine(SW_Window(null, SIndex));
         //داخل بازی ارور میدهد.
     }
