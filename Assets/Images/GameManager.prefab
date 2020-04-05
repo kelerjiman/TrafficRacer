@@ -149,6 +149,7 @@ MonoBehaviour:
   GM_Total_Coins: 3000
   GM_MainSpeed: 20
   GM_Is_Accident: 0
+  GM_Multiple: 1
   GM_Player:
   - {fileID: 4061907140514952257, guid: 08f33b14da713ee43b50de92b04739b2, type: 3}
   - {fileID: 5826686737098750114, guid: 1ecf931ee8e74064196b889b0f88c7b0, type: 3}
@@ -162,6 +163,7 @@ MonoBehaviour:
   - {fileID: 247031966712055796, guid: 1871aae8f19b0294993d09505f9e3207, type: 3}
   - {fileID: 949506615150398908, guid: 54f2339784d45214ab4d7e455381b6d7, type: 3}
   GM_Current_Prefab: {fileID: 0}
+  player: {fileID: 0}
   GM_Bounces: []
   GM_PlayerCarIndex: 0
   GM_DefPos: {x: 0, y: 0, z: 0}
@@ -198,7 +200,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -209,7 +211,7 @@ MonoBehaviour:
     pitch: 1.08
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -220,7 +222,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -231,7 +233,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -253,7 +255,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -264,7 +266,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -275,7 +277,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -286,7 +288,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -297,7 +299,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -308,7 +310,7 @@ MonoBehaviour:
     pitch: 1.2
     spatialBlend: 0
     loop: 1
-    playOnAwake: 0
+    playOnAwake: 1
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
     source: {fileID: 0}
@@ -329,7 +331,7 @@ MonoBehaviour:
     volume: 0.75
     pitch: 1.2
     spatialBlend: 0
-    loop: 1
+    loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 243410217805279148, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
@@ -340,7 +342,7 @@ MonoBehaviour:
     volume: 0.75
     pitch: 1.2
     spatialBlend: 0
-    loop: 1
+    loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 243114084836864626, guid: 53ea7b2d4c6247a44b845a24a7660669,
       type: 2}
