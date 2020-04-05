@@ -149,7 +149,7 @@ public class Movement : MonoBehaviour
     //متد تنظیم کننده حرکت در مدار ایکس
     void Handle_X_Move()
     {
-        rig.velocity += Vector3.right * X_Input * VProps.Get_HandlingRate();
+        rig.velocity += Vector3.right * X_Input * VProps.Get_HandlingRate()*Time.deltaTime;
         if (X_Input == 0)
             rig.velocity = new Vector3(0, rig.velocity.y, rig.velocity.z);
         Handle_X_Anim();
