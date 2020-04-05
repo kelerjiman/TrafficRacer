@@ -8,14 +8,20 @@ public class HeartManager : MonoBehaviour
     public List<GameObject> children;
     int lenght;
     Movement player;
-    private void Start()
+    private void Awake()
     {
         player = FindObjectOfType<Movement>();
         for (int i = 0; i < player.health; i++)
         {
-            children.Add(Instantiate(HeartPrefab, transform.position, Quaternion.identity));
-            children[i].transform.parent = transform;
+            var x = Instantiate(HeartPrefab, transform.position, Quaternion.identity);
+            x.transform.parent = transform;
+            x.transform.localScale = new Vector3(1, 1, 1);
+            children.Add(x);
         }
+    }
+    private void Start()
+    {
+
     }
     public void OnOffHandle()
     {
