@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b1f1b261c9219d41b310b469adcf291, type: 3}
-  m_Name: Jeep
+  m_Name: SuperCar
   m_EditorClassIdentifier: 
-  GearCount: 5
-  Nitro: 5.5
-  Mass: 1500
-  HandlingRate: 85
-  HandlingAnim_Rate: 0.424
-  BreakingRate: 6
-  Force_Resistance: 0.614
+  GearCount: 3
+  Nitro: 5
+  Mass: 50
+  HandlingRate: 180
+  HandlingAnim_Rate: 0.56
+  BreakingRate: 3
+  Force_Resistance: 0.4
   Health: 3

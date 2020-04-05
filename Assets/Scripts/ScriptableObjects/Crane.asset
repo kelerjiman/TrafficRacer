@@ -15,7 +15,7 @@ MonoBehaviour:
   GearCount: 3
   Nitro: 2
   Mass: 3600
-  HandlingRate: 0.2
+  HandlingRate: 60
   HandlingAnim_Rate: 0.2
   BreakingRate: 2
   Force_Resistance: 0.6
