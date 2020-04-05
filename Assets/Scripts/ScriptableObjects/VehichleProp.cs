@@ -36,8 +36,8 @@ public class VehichleProp : ScriptableObject
     [Space]
     [Header("Handling")]
     [SerializeField]
-    [Range(0, 1)]
-    float HandlingRate = 0.2f;
+    [Range(0, 300)]
+    float HandlingRate = 20f;
     public float Get_HandlingRate()
     {
         return HandlingRate;
