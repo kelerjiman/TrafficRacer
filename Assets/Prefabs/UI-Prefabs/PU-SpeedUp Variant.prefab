@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 216798349774062833, guid: 742d5a404fa58d247b49cbdba6c1aa46,
         type: 3}
       propertyPath: m_Name
-      value: PU-SpeedUp
+      value: PU-SpeedUp Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7033419777123158967, guid: 742d5a404fa58d247b49cbdba6c1aa46,
         type: 3}
@@ -296,6 +296,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711594701555870933, guid: 742d5a404fa58d247b49cbdba6c1aa46,
+        type: 3}
+      propertyPath: Name
+      value: Speed Up
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742d5a404fa58d247b49cbdba6c1aa46, type: 3}

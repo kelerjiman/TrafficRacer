@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1598376384286337267}
   - component: {fileID: 4277266262510910726}
   - component: {fileID: 2680302659240458287}
+  - component: {fileID: 6711594701555870933}
   m_Layer: 0
   m_Name: PowerUpButton
   m_TagString: Untagged
@@ -120,7 +121,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2096191239582640462}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6711594701555870933}
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1598376384286337267
@@ -262,6 +274,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6711594701555870933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216798349774062833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906d5fd5ee4d8be4d8d3a6f705d68f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  PriceText: {fileID: 6387626775873625635}
+  MaxUpgrade: 0
 --- !u!1 &593895733331585575
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 200000
+  m_Text: MAX
 --- !u!114 &3206297696747937208
 MonoBehaviour:
   m_ObjectHideFlags: 0
