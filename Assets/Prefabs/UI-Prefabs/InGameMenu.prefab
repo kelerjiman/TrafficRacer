@@ -1326,8 +1326,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c3dfe78d76e09b94bb98e118c27b0531, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1111aa61f7920c943824382c5b52656f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -12293,10 +12293,10 @@ MonoBehaviour:
   PreviousWindow: {fileID: 919252874161900543}
   splash: {fileID: 0}
   powerUps:
-  - {fileID: 6760476413598092043, guid: b0ebf1442f4cc834ab7b8a0c0826fb10, type: 3}
-  - {fileID: 6760476413598092043, guid: b0ebf1442f4cc834ab7b8a0c0826fb10, type: 3}
-  - {fileID: 6760476413598092043, guid: b0ebf1442f4cc834ab7b8a0c0826fb10, type: 3}
-  - {fileID: 6760476413598092043, guid: b0ebf1442f4cc834ab7b8a0c0826fb10, type: 3}
+  - {fileID: 1623230926618487888, guid: 5636eecdf38cb5540be9d5e608715b07, type: 3}
+  - {fileID: 6094062296271751077, guid: e7d83a1f74f072a47ac38cf4f8baa2ec, type: 3}
+  - {fileID: 2509291231930054919, guid: f5f3050d64530644796d42aef28d1877, type: 3}
+  - {fileID: 3341931305652703798, guid: 599cf9607fd0d0d409f250d642bf7ff6, type: 3}
   ContentHolder: {fileID: 7628032276509832889}
 --- !u!1 &6886932917185921326
 GameObject:
