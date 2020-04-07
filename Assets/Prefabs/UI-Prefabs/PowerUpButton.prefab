@@ -74,7 +74,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 84ce286811f63914f8860b5284d91f00, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 650
-  m_PreferredHeight: 864
+  m_PreferredWidth: 500
+  m_PreferredHeight: 900
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
 --- !u!82 &2680302659240458287
@@ -188,8 +188,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: f1dcdadb6b859274a8aa70d6b13ab7b9, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -286,9 +286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906d5fd5ee4d8be4d8d3a6f705d68f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  PUName: 
   PriceText: {fileID: 6387626775873625635}
-  MaxUpgrade: 0
+  StarterPrice: 300
+  source: {fileID: 2680302659240458287}
+  MaxLevel: 4
 --- !u!1 &593895733331585575
 GameObject:
   m_ObjectHideFlags: 0

@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f46eb4f19bf3374c95189b537a08d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PUName: SpeedDown
   types: 2
   Particle: {fileID: 100000, guid: 3f2703c0c64431f46b1977fc6049670b, type: 3}
   prize: 0
