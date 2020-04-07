@@ -12,6 +12,7 @@ public class PowerUp : MonoBehaviour
         speed,
         scale
     }
+    [SerializeField] string PUName;
     [SerializeField] Type types;
     [SerializeField] GameObject Particle;
     [SerializeField] int prize = 1;
@@ -26,6 +27,8 @@ public class PowerUp : MonoBehaviour
     {
         player = FindObjectOfType<Movement>();
         Destroy(gameObject, 20);
+        Timer = PlayerPrefsScript.getPowerUpLevel(PUName) * Timer;
+        Debug.Log(PlayerPrefsScript.getPowerUpLevel(PUName));
     }
     private void Update()
     {
@@ -55,6 +58,7 @@ public class PowerUp : MonoBehaviour
         //set coin in run time window 
         var RunTime = FindObjectOfType<RunTimeWindow>();
         RunTime.Cash_Ingame += prize;
+        ScoreManager.Instance.TotalCash += prize;
         RunTime.T_InGameCash.text = RunTime.Cash_Ingame.ToString();
         //--------------------------------------------------------
         //saving total coin in player prefs

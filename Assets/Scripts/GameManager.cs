@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CarNames DefaultCarNames;
     string FirstCar;
     //In game UI elements
-    public int GM_In_gamecash = 0;
+    public int GM_CashInGame = 0;
     public int GM_Total_Coins = 3000;//باید مقدار صفر شود
     public float GM_MainSpeed = 5f;
     public bool GM_Is_Accident = false;
@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        RestorePurchasing();
         Instance = this;
         Handle_ChangeCar();
         defScale = GM_Current_Prefab.transform.localScale;

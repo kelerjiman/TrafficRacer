@@ -12,6 +12,14 @@ public class PlayerPrefsScript : MonoBehaviour
     const string CURRENT_CAR = "CurrentCar";
     const string SFX_VOLUME = "sfx_volume";
     const string SFX_MUTE = "sfx_mute";
+    public static void setPowerUpLevel(string PUName,int x)
+    {
+        PlayerPrefs.SetInt(PUName, x);
+    }
+    public static int getPowerUpLevel(string PUName)
+    {
+        return PlayerPrefs.GetInt(PUName);
+    }
     public static void setSfxVolume(float sfx)
     {
         PlayerPrefs.SetFloat(SFX_VOLUME, sfx);

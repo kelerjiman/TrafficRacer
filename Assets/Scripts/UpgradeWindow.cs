@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeWindow : GenericWindow
 {
@@ -15,8 +16,10 @@ public class UpgradeWindow : GenericWindow
         {
            var x= Instantiate(powerUp);
             x.transform.parent = ContentHolder;
+            x.transform.localScale = Vector3.one;
         }
     }
+  
 
 
 }

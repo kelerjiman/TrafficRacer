@@ -10,37 +10,29 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] internal int Powerups = 0;
     [SerializeField] internal int OppositeLine = 0;
     [SerializeField] internal int TotalCash = 0;
-    [SerializeField] internal int TotalScore = 0;
+    [SerializeField] internal int totalScore = 0;
     [SerializeField]
     float timer = 5;
     float timerTemp = 0;
     public bool timeToCount = false;
-    looseWindow looseWin;
+    [SerializeField] looseWindow looseWin;
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && !timeToCount)
+        if (other.tag == "Player")
         {
             timerTemp += Time.deltaTime;
-        }
-        if (timeToCount)
-        {
-            OppositeLine += (int)timerTemp;
-            FindObjectOfType<looseWindow>().GetComponent<IWindowGeneric>().reloadSetting();
-            timerTemp = 0;
-            timeToCount = false;
+            if (timeToCount && !GameManager.Instance.GM_Is_Accident)
+            {
+                OppositeLine = (int)timerTemp;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (timerTemp >= timer)
-            {
-                OppositeLine += (int)timerTemp;
-                timerTemp = 0;
-            }
-
-            Debug.Log("score manager ontrigger exit time to count : " + ScoreManager.Instance.OppositeLine);
+            timerTemp = 0;
+            timeToCount = false;
         }
     }
     private void Start()
@@ -50,6 +42,17 @@ public class ScoreManager : MonoBehaviour
     }
     private void Update()
     {
-
+        if (GameManager.Instance.GM_Is_Accident)
+            return;
+        if (timerTemp > timer)
+            timeToCount = true;
+        else
+            timeToCount = false;
+        totalScore = OverTakes + Powerups + OppositeLine + TotalDistance;
     }
+    ..
+    //total score mohasebe mishavad vali dar loose window lahaz nemishavad
+    //zamani ke button reload marboot be loose window ra 
+    //bezanim error GameManager.Instance.GM_... ra midahad
+    //fix shavad
 }

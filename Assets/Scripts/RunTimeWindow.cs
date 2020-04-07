@@ -68,6 +68,7 @@ public class RunTimeWindow : GenericWindow
         if (GameManager.Instance.GM_Is_Accident)
         {
             loosePanel.SetActive(true);
+            loosePanel.GetComponent<IWindowGeneric>().reloadSetting();
             this.gameObject.SetActive(false);
 
         }

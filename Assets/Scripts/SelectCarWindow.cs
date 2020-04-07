@@ -28,7 +28,6 @@ public class SelectCarWindow : GenericWindow
     public override void reloadSetting()
     {
         base.reloadSetting();
-        Coins.text = GameManager.Instance.GM_Total_Coins.ToString();
     }
 
 }

@@ -82,5 +82,7 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
             splash.FadeInOut(false);
             Debug.Log(splash.name);
         }
+        if (Coins != null)
+            Coins.text = GameManager.Instance.GM_Total_Coins.ToString();
     }
 }

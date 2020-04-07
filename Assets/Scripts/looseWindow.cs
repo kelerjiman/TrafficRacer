@@ -17,10 +17,8 @@ public class looseWindow : GenericWindow
     Text m_PowerUps;
     [SerializeField]
     Text m_TotalScore;
-    ScoreManager SM;
     public override void Start()
     {
-        SM = FindObjectOfType<ScoreManager>();
         base.Start();
         CloseButton.gameObject.SetActive(false);
     }
@@ -31,12 +29,15 @@ public class looseWindow : GenericWindow
     }
     public override void reloadSetting()
     {
-        m_TotalDistance.text = SM.TotalDistance.ToString();
-        m_TotalScore.text= SM.TotalScore.ToString();
-        m_OverTakes.text = SM.OverTakes.ToString();
-        m_PowerUps.text = SM.Powerups.ToString();
-        m_Opposite.text = SM.OppositeLine.ToString();
+        m_TotalDistance.text = ScoreManager.Instance.TotalDistance.ToString();
+        Debug.Log("ScoreManager total score is : "+ScoreManager.Instance.totalScore);
+        m_TotalScore.text= ScoreManager.Instance.totalScore.ToString();
+        m_OverTakes.text = ScoreManager.Instance.OverTakes.ToString();
+        m_PowerUps.text = ScoreManager.Instance.Powerups.ToString();
+        m_Opposite.text = ScoreManager.Instance.OppositeLine.ToString();
         GameManager.Instance.player.gameObject.SetActive(false);
+        //Coins.text = ScoreManager.Instance.TotalCash.ToString();
         base.reloadSetting();
+        //hesab ketab loose panel dorost shavad
     }
 }
