@@ -25,7 +25,7 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     {
         if (GameManager.Instance.GM_Is_Accident)
         {
-            Debug.Log("onACCIDENT");
+            //Debug.Log("onACCIDENT");
         }
     }
     public virtual void OnCloseButton()
@@ -34,7 +34,7 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     }
     public virtual void OnPauseButton()
     {
-        Debug.Log("On Pause Button");
+        //Debug.Log("On Pause Button");
         Time.timeScale = 0;
         OnNext(PreviousWindow);
     }
@@ -59,8 +59,8 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
     }
     public virtual void OnNextScene(int SIndex)
     {
-        if (GameManager.Instance.player != null)
-            GameManager.Instance.player.gameObject.SetActive(true);
+        if (GameManager.Instance.GM_player != null)
+            GameManager.Instance.GM_player.gameObject.SetActive(true);
         StartCoroutine(SW_Window(null, SIndex));
         //داخل بازی ارور میدهد.
     }
@@ -73,14 +73,14 @@ public class GenericWindow : MonoBehaviour, IWindowGeneric
         PauseBtn.onClick.RemoveAllListeners();
         CloseBtn.onClick.AddListener(() => OnCloseButton());
         PauseBtn.onClick.AddListener(() => OnPauseButton());
-        Debug.Log("this is " + gameObject.name);
+        //Debug.Log("this is " + gameObject.name);
         PauseBtn.gameObject.SetActive(false);
         splash = GetComponentInChildren<SplashScreen>();
         if (splash != null)
         {
             //splash.FadeInOut(true);
             splash.FadeInOut(false);
-            Debug.Log(splash.name);
+            //Debug.Log(splash.name);
         }
         if (Coins != null)
             Coins.text = GameManager.Instance.GM_Total_Coins.ToString();
