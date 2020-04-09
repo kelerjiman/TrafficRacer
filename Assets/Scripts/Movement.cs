@@ -65,8 +65,8 @@ public class Movement : MonoBehaviour
             source.pitch = 0;
             return;
         }
-        source.pitch = (rig.velocity.z * 2) / (GameManager.Instance.GM_MainSpeed * 2);
-        MainSpeed = GameManager.Instance.GM_MainSpeed;
+        source.pitch = (rig.velocity.z * 2) / (GameManager.Instance.GM_PlayerSpeed * 2);
+        MainSpeed = GameManager.Instance.GM_PlayerSpeed;
         Handle_Speed();
         Handle_X_Move();
         ScoreManager.Instance.TotalDistance += ((int)transform.position.z - ScoreManager.Instance.TotalDistance);
@@ -108,9 +108,9 @@ public class Movement : MonoBehaviour
     //متد تنظیم کننده فرایند گاز دادن
     public void Speed_Enc()
     {
-        if (rig.velocity.z >= GameManager.Instance.GM_MainSpeed * 2)
+        if (rig.velocity.z >= GameManager.Instance.GM_PlayerSpeed * 2)
             return;
-        Vector3 temp = Vector3.forward * GameManager.Instance.GM_MainSpeed * 2;
+        Vector3 temp = Vector3.forward * GameManager.Instance.GM_PlayerSpeed * 2;
         rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Nitro() * Time.deltaTime);
         //Debug.Log("================================================================================");
         //Debug.Log("=                                                                              =");
@@ -125,7 +125,7 @@ public class Movement : MonoBehaviour
     public void Speed_Dec()
     {
         /*حداقل و حداکثر سرعت را مشخص و با ترمز و گاز بین این دو تغییر ایجاد کند.*/
-        Vector3 temp = Vector3.forward * GameManager.Instance.GM_MainSpeed;
+        Vector3 temp = Vector3.forward * GameManager.Instance.GM_PlayerSpeed;
         rig.velocity = Vector3.Lerp(rig.velocity, temp, VProps.Get_Breaking() * Time.deltaTime);
     }
     //متد تنظیم کننده انیمیشن برای فرایند ترمز و گاز
