@@ -58,7 +58,7 @@ public class PowerUp : MonoBehaviour
         //set coin in run time window 
         var RunTime = FindObjectOfType<RunTimeWindow>();
         RunTime.Cash_Ingame += prize;
-        ScoreManager.Instance.TotalCash += prize;
+        ScoreManager.Instance.TotalCoin += prize;
         RunTime.T_InGameCash.text = RunTime.Cash_Ingame.ToString();
         //--------------------------------------------------------
         //saving total coin in player prefs
@@ -77,7 +77,7 @@ public class PowerUp : MonoBehaviour
             //case Type.coin:
             //    break;
             case Type.speed:
-                GameManager.Instance.speed(player, Timer, IsPositive);
+                GameManager.Instance.speed( Timer, IsPositive);
                 break;
             case Type.scale:
                 GameManager.Instance.Scale(player, Timer, IsPositive);
