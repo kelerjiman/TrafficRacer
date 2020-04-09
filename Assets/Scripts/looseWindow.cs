@@ -29,15 +29,16 @@ public class looseWindow : GenericWindow
     }
     public override void reloadSetting()
     {
-        m_TotalDistance.text = ScoreManager.Instance.TotalDistance.ToString();
-        Debug.Log("ScoreManager total score is : "+ScoreManager.Instance.totalScore);
-        m_TotalScore.text= ScoreManager.Instance.totalScore.ToString();
+        m_TotalDistance.text = ((int)(ScoreManager.Instance.TotalDistance/100)).ToString();
+        m_TotalScore.text = ScoreManager.Instance.totalScore.ToString();
         m_OverTakes.text = ScoreManager.Instance.OverTakes.ToString();
         m_PowerUps.text = ScoreManager.Instance.Powerups.ToString();
         m_Opposite.text = ScoreManager.Instance.OppositeLine.ToString();
-        GameManager.Instance.player.gameObject.SetActive(false);
+        GameManager.Instance.GM_player.gameObject.SetActive(false);
         //Coins.text = ScoreManager.Instance.TotalCash.ToString();
         base.reloadSetting();
+        Coins.text = ScoreManager.Instance.TotalCoin.ToString();
+        GameManager.Instance.Reload_Speed();
         //hesab ketab loose panel dorost shavad
     }
 }
