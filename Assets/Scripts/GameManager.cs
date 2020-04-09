@@ -73,27 +73,37 @@ public class GameManager : MonoBehaviour
         Ambulance
     }
     public static GameManager Instance;
-    public SplashScreen Splash;
     [SerializeField] CarNames DefaultCarNames;
     string FirstCar;
-    //In game UI elements
-    public int GM_CashInGame = 0;
-    public int GM_Total_Coins = 3000;//باید مقدار صفر شود
-    public float GM_PlayerSpeed = 5f;
-    public bool GM_Is_Accident = false;
-    public int GM_Multiple = 1;
-    //به نحوه انتخاب وسیله فکر شود
-    //قرار است که این گیم ابجکت در تمام بازی ست شود
 
-    [Header("Car prefabs")]
+    [HideInInspector]
+    public int GM_CashInGame = 0;
+    public int GM_Total_Coins = 0;
+    [Space(5)]
+    [Header("----------------------------------------------")]
+    public float GM_PlayerSpeed = 5f;
+    [SerializeField] internal float inter_AISpeed = 5f;
+    public int GM_Multiple = 1;
+    [Space(10)]
+    [Header("-----------------Car Prefab--------------------")]
+    [Space(5)]
     public GameObject[] GM_Player;
     public GameObject GM_Current_Prefab;
     public Movement GM_player;
-  
-    [SerializeField] internal float GM_AISpeed = 5f;
-    float m_defSpeed = 0;
-    Vector3 defScale = Vector3.zero;
-    Vector3 GM_DefPos = Vector3.zero;
+    public bool GM_Is_Accident = false;
+    //Encrease Speed Properties
+    [Space(10)]
+    [Header("---------------Enc Speed------------------------")]
+    [Space(10)]
+    [SerializeField]
+    internal float timer = 25;
+    float m_TimerTemp = 0;
+    [SerializeField] int Unit = 5;
+    [SerializeField] float DefSpeed = 0;
+    float StartSpeed = 0;
+    [Header("----------------------------------------------")]
+    Vector3 m_DefScale = Vector3.zero;
+    Vector3 m_DefPos = Vector3.zero;
     private void Awake()
     {
         GM_Total_Coins = PlayerPrefsScript.getTotalCoin();
@@ -109,8 +119,9 @@ public class GameManager : MonoBehaviour
         RestorePurchasing();
         Instance = this;
         Handle_ChangeCar();
-        defScale = GM_Current_Prefab.transform.localScale;
-        m_defSpeed = GM_PlayerSpeed;
+        m_DefScale = GM_Current_Prefab.transform.localScale;
+        GM_PlayerSpeed = DefSpeed;
+        StartSpeed = DefSpeed;
     }
     private void Update()
     {
@@ -180,8 +191,8 @@ public class GameManager : MonoBehaviour
             }
         }
         GM_Current_Prefab = Instantiate(Instance.GM_Current_Prefab);
-        GM_DefPos.y += 0.25f;
-        GM_Current_Prefab.transform.position = GM_DefPos;
+        m_DefPos.y += 0.25f;
+        GM_Current_Prefab.transform.position = m_DefPos;
         GM_Current_Prefab.tag = "Player";
         GM_Current_Prefab.layer = LayerMask.NameToLayer("Player");
     }
@@ -210,7 +221,7 @@ public class GameManager : MonoBehaviour
             player.transform.localScale = Vector3.Lerp(temp, (temp * -2), 2 * Time.deltaTime);
         StartCoroutine(ScaleTimer(player, x));
     }
-    public void speed(Movement player, int x, bool Positive)
+    public void speed( int x, bool Positive)
     {
         if (Positive)
         {
@@ -220,25 +231,30 @@ public class GameManager : MonoBehaviour
         {
             GM_PlayerSpeed -= (int)(GM_PlayerSpeed * 10 / 100);
         }
-        StartCoroutine(SpeedTimer(player, x));
+        StartCoroutine(SpeedTimer( x));
     }
     IEnumerator ScaleTimer(Movement player, int x)
     {
         yield return new WaitForSeconds(x);
-        player.transform.localScale = defScale;
-            //Vector3.Lerp(player.transform.localScale, defScale, 2 * Time.deltaTime);
+        player.transform.localScale = m_DefScale;
+        //Vector3.Lerp(player.transform.localScale, defScale, 2 * Time.deltaTime);
     }
-    IEnumerator SpeedTimer(Movement player, int x)
+    IEnumerator SpeedTimer( int x)
     {
         yield return new WaitForSeconds(x);
-        GM_PlayerSpeed = m_defSpeed;
+        Reload_Speed();
+    }
+    public void Reload_Speed()
+    {
+        DefSpeed = StartSpeed;
+        GM_PlayerSpeed = DefSpeed;
+    }
+    public void Handle_EncSpeed()
+    {
+        DefSpeed += Unit;
+        GM_PlayerSpeed = DefSpeed;
     }
 }
-
-//روی ساخت ماشین ها مختلف کار شود 
-// player  گیم ابجکت های مختلف باید ست شود برای این کار باید
-//GM_PlayerIndex
-//از حالت اینتجر به گیم ابجکت تغییر کند
 #region Old_Code
 /*
  public static GameManager GM;
