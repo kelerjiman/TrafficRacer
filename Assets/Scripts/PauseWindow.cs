@@ -18,7 +18,7 @@ public class PauseWindow : GenericWindow
     }
     public override void OnPauseButton()
     {
-        GameManager.Instance.player.gameObject.SetActive(true);
+        GameManager.Instance.GM_player.gameObject.SetActive(true);
         base.OnPauseButton();
         Time.timeScale = 1;
     }
