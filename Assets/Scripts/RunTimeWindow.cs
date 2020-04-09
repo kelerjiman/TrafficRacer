@@ -31,7 +31,7 @@ public class RunTimeWindow : GenericWindow
         CloseButton.gameObject.SetActive(false);
         base.Start();
         player = FindObjectOfType<Movement>();
-        GameManager.Instance.player = player;
+        GameManager.Instance.GM_player = player;
     }
     public override void Update()
     {
@@ -51,7 +51,7 @@ public class RunTimeWindow : GenericWindow
 
     void Handle_MainSpeed()
     {
-        T_MainSpeed.text = (GameManager.Instance.GM_MainSpeed * 2).ToString();
+        T_MainSpeed.text = (GameManager.Instance.GM_PlayerSpeed * 2).ToString();
     }
     void Handle_CurrentSpeed()
     {
