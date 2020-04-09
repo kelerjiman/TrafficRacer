@@ -33,7 +33,7 @@ public class cars : MonoBehaviour, IPooler
         m_defPos = transform.position;
         m_defRot = model.transform.rotation.eulerAngles.y;
         m_collider = GetComponent<BoxCollider>();
-        MainSpeed = GameManager.Instance.GM_MainSpeed;
+        MainSpeed = GameManager.Instance.inter_AISpeed;
 
     }
     private void Update()
