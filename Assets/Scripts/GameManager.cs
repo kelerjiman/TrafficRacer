@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     //In game UI elements
     public int GM_CashInGame = 0;
     public int GM_Total_Coins = 3000;//باید مقدار صفر شود
-    public float GM_MainSpeed = 5f;
+    public float GM_PlayerSpeed = 5f;
     public bool GM_Is_Accident = false;
     public int GM_Multiple = 1;
     //به نحوه انتخاب وسیله فکر شود
@@ -88,17 +88,12 @@ public class GameManager : MonoBehaviour
     [Header("Car prefabs")]
     public GameObject[] GM_Player;
     public GameObject GM_Current_Prefab;
-    public Movement player;
-    [Header("Bounces Prefabs")]
-    public GameObject[] GM_Bounces;
-    [Header("Index Of car")]
-    public int GM_PlayerCarIndex = 0;
-    public Vector3 GM_DefPos = Vector3.zero;
-    [SerializeField] float m_PGlobalSpeed = 5f;
-    [SerializeField] int m_changeAmount = 0;
+    public Movement GM_player;
+  
+    [SerializeField] internal float GM_AISpeed = 5f;
     float m_defSpeed = 0;
     Vector3 defScale = Vector3.zero;
-
+    Vector3 GM_DefPos = Vector3.zero;
     private void Awake()
     {
         GM_Total_Coins = PlayerPrefsScript.getTotalCoin();
@@ -115,7 +110,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         Handle_ChangeCar();
         defScale = GM_Current_Prefab.transform.localScale;
-        m_defSpeed = GM_MainSpeed;
+        m_defSpeed = GM_PlayerSpeed;
     }
     private void Update()
     {
@@ -134,7 +129,7 @@ public class GameManager : MonoBehaviour
     }
     public void Handle_ChangeCar()
     {
-        if (GameManager.Instance.GM_Current_Prefab == null)
+        if (Instance.GM_Current_Prefab == null)
         {
             string TempName = PlayerPrefsScript.getCurrentCar();
             //Debug.Log("Current Car is :" + TempName);
@@ -184,8 +179,8 @@ public class GameManager : MonoBehaviour
                 Destroy(item.gameObject);
             }
         }
-        GM_Current_Prefab = Instantiate(GameManager.Instance.GM_Current_Prefab);
-        GM_DefPos.y += 0.4f;
+        GM_Current_Prefab = Instantiate(Instance.GM_Current_Prefab);
+        GM_DefPos.y += 0.25f;
         GM_Current_Prefab.transform.position = GM_DefPos;
         GM_Current_Prefab.tag = "Player";
         GM_Current_Prefab.layer = LayerMask.NameToLayer("Player");
@@ -219,11 +214,11 @@ public class GameManager : MonoBehaviour
     {
         if (Positive)
         {
-            GM_MainSpeed += (int)(GM_MainSpeed * 10 / 100);
+            GM_PlayerSpeed += (int)(GM_PlayerSpeed * 10 / 100);
         }
         else
         {
-            GM_MainSpeed -= (int)(GM_MainSpeed * 10 / 100);
+            GM_PlayerSpeed -= (int)(GM_PlayerSpeed * 10 / 100);
         }
         StartCoroutine(SpeedTimer(player, x));
     }
@@ -236,7 +231,7 @@ public class GameManager : MonoBehaviour
     IEnumerator SpeedTimer(Movement player, int x)
     {
         yield return new WaitForSeconds(x);
-        GM_MainSpeed = m_defSpeed;
+        GM_PlayerSpeed = m_defSpeed;
     }
 }
 
