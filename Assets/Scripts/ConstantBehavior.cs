@@ -22,10 +22,5 @@ public class ConstantBehavior : MonoBehaviour
         if (!GameManager.Instance.GM_Is_Accident)
             transform.position =
                 new Vector3(0, 0, defPos.z + player.transform.position.z);
-        else
-        {
-            transform.position += Vector3.forward * Time.deltaTime * GameManager.Instance.GM_MainSpeed;
-
-        }
     }
 }
