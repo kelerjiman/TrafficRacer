@@ -9,21 +9,21 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] internal int OverTakes = 0;
     [SerializeField] internal int Powerups = 0;
     [SerializeField] internal int OppositeLine = 0;
-    [SerializeField] internal int TotalCash = 0;
+    [SerializeField] internal int TotalCoin = 0;
     [SerializeField] internal int totalScore = 0;
-    [SerializeField]
-    float timer = 5;
-    float timerTemp = 0;
     public bool timeToCount = false;
+    [SerializeField] float Timer = 5;
+    float m_TimerTemp = 0;
     [SerializeField] looseWindow looseWin;
+    float m_SpeedTimer = 0;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            timerTemp += Time.deltaTime;
+            m_TimerTemp += Time.deltaTime;
             if (timeToCount && !GameManager.Instance.GM_Is_Accident)
             {
-                OppositeLine = (int)timerTemp;
+                OppositeLine = (int)m_TimerTemp;
             }
         }
     }
@@ -31,7 +31,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            timerTemp = 0;
+            m_TimerTemp = 0;
             timeToCount = false;
         }
     }
@@ -39,20 +39,22 @@ public class ScoreManager : MonoBehaviour
     {
         Instance = this;
         OppositeLine = 0;
+        StartCoroutine(Handle_EncSpeed());
     }
     private void Update()
     {
         if (GameManager.Instance.GM_Is_Accident)
             return;
-        if (timerTemp > timer)
+        if (m_TimerTemp > Timer)
             timeToCount = true;
         else
             timeToCount = false;
         totalScore = OverTakes + Powerups + OppositeLine + TotalDistance;
     }
-    ..
-    //total score mohasebe mishavad vali dar loose window lahaz nemishavad
-    //zamani ke button reload marboot be loose window ra 
-    //bezanim error GameManager.Instance.GM_... ra midahad
-    //fix shavad
+    IEnumerator Handle_EncSpeed()
+    {
+        yield return new WaitForSeconds(GameManager.Instance.timer);
+        GameManager.Instance.Handle_EncSpeed();
+        StartCoroutine(Handle_EncSpeed());
+    }
 }
